@@ -1,0 +1,115 @@
+/*
+ * Globals
+ */
+
+
+
+
+/*
+ * Override Bootstrap's default container.
+ */
+
+
+
+
+/*
+ * Masthead for nav
+ */
+
+
+
+
+/*
+ * content name and description
+ */
+
+.content-header {
+  padding-bottom: 1.25rem;
+  margin-bottom: 2rem;
+  border-bottom: .05rem solid #eee;
+}
+.content-title {
+  margin-bottom: 0;
+  font-size: 2rem;
+  font-weight: normal;
+}
+.content-description {
+  font-size: 1.1rem;
+  color: #999;
+}
+
+
+
+/*
+ * Main column and sidebar layout
+ */
+
+/* Sidebar modules for boxing content */
+.sidebar-module {
+  padding: 1rem;
+  /*margin: 0 -1rem 1rem;*/
+}
+.sidebar-module-inset {
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-radius: .25rem;
+}
+.sidebar-module-inset p:last-child,
+.sidebar-module-inset ul:last-child,
+.sidebar-module-inset ol:last-child {
+  margin-bottom: 0;
+}
+
+
+/* Pagination */
+.content-pagination {
+  margin-bottom: 4rem;
+}
+.content-pagination > .btn {
+  border-radius: 2rem;
+}
+
+
+/*
+ * content posts
+ */
+
+.content-post {
+  margin-bottom: 3rem;
+}
+.content-post-title {
+  margin-bottom: .20rem;
+  font-size: 2.2rem;
+}
+.content-post-meta {
+  margin-bottom: 1.20rem;
+  color: #999;
+}
+
+
+/*
+ * Footer
+ */
+
+.content-footer {
+  padding: 2.5rem 0;
+  color: #999;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-top: .05rem solid #e5e5e5;
+}
+.content-footer p:last-child {
+  margin-bottom: 0;
+}
+
+
+#flash-message{
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+}
+@keyframes flash-message {
+    0%   {opacity: 1;}
+    100% {opacity: 0; display:none;}
+}
