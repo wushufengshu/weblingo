@@ -7,6 +7,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use \App\User;
+use \Carbon;
 
 class UsersController extends Controller
 {

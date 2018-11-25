@@ -20,6 +20,18 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="#">
+          <span data-feather="users"></span>
+          Assessment
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('questions.index') }}">
+          <span data-feather="file"></span>
+          Questions
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapse"><span data-feather="plus-circle"></span>Courses</a>
         
         <div class="container">
@@ -32,12 +44,6 @@
             @endforeach
           </div>
       </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="feather"></span>
-          Contents
-        </a>
       </li>
     </ul>
 

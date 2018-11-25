@@ -20,21 +20,24 @@
 	 	 </div>
 	</div>
 	
-	<div class="table-responsive form-group col-md-10">
+	<div class="table-responsive form-group col-md-12">
 		
 		<table class="table table-hover" border="0">
 			
 			<tr class="table-active">
-				<th width="20%">Name</th>
-				<th width="25%">Email</th>
-				<th width="35%">Address</th>
+				<th width="15%">Name</th>
+				<th width="20%">Email</th>
+				<th width="30%">Address</th>
+				<th>Adminstrator at</th>
 				<th class="text-center">Action</th>
 			</tr>
-			@foreach($admins->except(Auth::id()) as $admin)
+			{{-- @foreach($admins->except(Auth::id()) as $admin) --}}
+			@foreach($admins as $admin)
 			<tr>
 				<td><a href="{{ route('user-admin.show', $admin->id) }}">{{$admin->first_name}} {{$admin->last_name}}</a> </td>
 				<td> {{$admin->email}} </td>
 				<td> {{$admin->address}} </td>
+				<td> {{$admin->admin_at}} </td>
 				<td>
 					<div class="form-group row">
 

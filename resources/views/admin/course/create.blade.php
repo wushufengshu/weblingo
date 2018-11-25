@@ -10,13 +10,23 @@
 @endsection
 @section('content')
 <div class="wrapper container">
-    <form method="POST" action="{{ route('course.store') }}">    
+    <form method="POST" action="{{ route('course.store') }}" enctype="multipart/form-data">    
       @method('POST')
       @csrf
       <div class="form-group row">
         <label for="name" class="col-md-2 col-form-label ">Course Name</label>
           <div class="col-md-8">
             <input id="name" type="text" class="form-control" name="name" value="" placeholder="Course name" required autofocus>
+          </div>
+      </div>
+      <div class="form-group row">
+        <label for="course-image" class="col-md-2 col-form-label ">Course Image</label>
+          <div class="col-md-8">
+            <input id="course-image" type="file" class="" name="course_image" value="" placeholder="Course Image" required autofocus>
+            {{-- <div class="custom-file">
+              <label class="custom-file-label" for="course-image">Choose file</label>
+              <input type="file" class="custom-file-input" id="course-image" aria-describedby="inputGroupFileAddon01">
+            </div> --}}
           </div>
       </div>
       <div class="form-group row">

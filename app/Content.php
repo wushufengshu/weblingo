@@ -20,4 +20,8 @@ class Content extends Model
     public function course(){
 		return $this->belongsTo(Course::class);
 	}
+
+    public function code(){
+        return $this->hasMany(Code::class);
+    }
 }

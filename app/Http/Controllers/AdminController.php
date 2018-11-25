@@ -25,7 +25,7 @@ class AdminController extends Controller
     public function index(Course $courses)
     {
         
-        return view('admin.dashboard', compact('courses'));
+        return view('admin.dashboard.index', compact('courses'));
     }
     // public function dashboard()
     // {

@@ -84,15 +84,16 @@
                     
                 </div>
             @endif
-
+            
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <div class="panel">
-                            @component('components.who')
+                        <div class="icon-image">
+                           {{--  @component('components.who')
                                     
 
-                            @endcomponent
+                            @endcomponent --}}
+                            <img src="{{ asset('images/weblingoiconoriginal.png') }}"  alt="">
                         </div>
                     </div>    
                 </div>

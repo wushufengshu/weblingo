@@ -21,19 +21,26 @@
 	
 	<div class="table-responsive form-group col-md-10">
 		
-		<table class="table table-hover" border="0">
+		<table class="table table-hover mw-100" border="0">
 			
 			<tr class="table-active">
 				<th width="20%">Name</th>
 				<th width="25%">Email</th>
-				<th width="35%">Address</th>
+				<th width="15%">Date Registered</th>
+				<th width="15%">Date Verified</th>
 				<th class="text-center">Action</th>
 			</tr>
 			@foreach($users->all() as $user)
 			<tr>
 				<td><a href="{{ route('users.show', $user->id) }}">{{$user->first_name}} {{$user->last_name}}</a> </td>
 				<td> {{$user->email}} </td>
-				<td> </td>
+				<td> {{$user->created_at->toFormattedDateString()}} </td>
+				<td>@if($user->email_verified_at != null)
+						{{$user->email_verified_at}}
+					@else
+						 
+					@endif
+				</td>
 				<td>
 					<div class="form-group row">
 

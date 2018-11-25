@@ -26,7 +26,7 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name','last_name', 'email', 'password', 'address'
+        'first_name','last_name', 'email', 'password', 'address','admin_at', 'type'
     ];
 
     /**
@@ -47,8 +47,12 @@ class Admin extends Authenticatable
     {
         return $this->hasMany(Course::class);
     }
+    public function isAdmin()
+    {
+        return $this->where('admin_at' == 'Super Admin');
+    }
 
-    public function addCourse($name,$slug,$description)
+    public function addCourse($name,$slug,$description,$image)
     {
         // $this->categories()->create(compact('name','description'));
         Course::create([
@@ -56,6 +60,7 @@ class Admin extends Authenticatable
             'name' => $name,
             'slug' => $slug,
             'description' => $description,
+            'image' => $image
         ]);
     }
 }

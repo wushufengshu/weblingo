@@ -18,7 +18,9 @@ class CreateCodesTable extends Migration
             $table->integer('course_id');
             $table->integer('content_id');
             $table->string('heading');
-            $table->text('code');
+            $table->text('html-code');
+            $table->text('css-code');
+            $table->text('javascript-code');
             $table->timestamps();
         });
     }

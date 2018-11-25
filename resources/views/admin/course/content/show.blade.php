@@ -20,8 +20,16 @@
 
 
 	<p class="content-post-meta">
-		{{$content->body}}
+		{!!$content->body!!}
 	</p>
+
+	@foreach($content->code as $code)
+		<article>
+			
+			<textarea id="html" placeholder="HTML">{!!$code->code!!}</textarea>
+			<iframe id="code"></iframe>
+		</article>
+	@endforeach
 
  	
 </div>

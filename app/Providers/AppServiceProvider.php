@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
         //
         Schema::defaultStringLength(191);
 
-        view()->composer(['admin.layouts.sidebar','admin.dashboard'], function($view){
+        view()->composer(['admin.layouts.sidebar','admin.dashboard.index'], function($view){
             $view->with('archives', \App\Course::archives());
         });
     }

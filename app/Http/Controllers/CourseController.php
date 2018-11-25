@@ -41,18 +41,22 @@ class CourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Course $course, Admin $admin){
+    public function store(Request $request,Course $course, Admin $admin){
+
 
         $this->validate(request(), [
             'name' => 'required|unique:courses|min:3|max:25',
             'slug' => 'required|alpha_dash|unique:courses|min:3|max:25',
-            'description' => 'required|max:255'
+            'description' => 'required|max:255',
+            'course_image' => 'required|image'
         ]);
-
-        
-
-        $admin->addCourse(request('name'),request('slug'), request('description'));
-
+        // $file = request(file('course_image'));
+        if($file = $request->file('course_image')){
+        $course_image_name = $file->getClientOriginalName();
+            if($file->move('images', $course_image_name)){
+            $admin->addCourse(request('name'),request('slug'), request('description'), $course_image_name);
+            }
+        }
         session()->flash('message', 'Course added');
 
         return redirect()->route('admin.home');

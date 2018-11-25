@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow navbar-expand-md">
-  <a class="navbar-brand col-md-2 mr-0" href="#"><span data-feather="anchor"></span>  Antidote</a>
-  
+  <a class="navbar-brand col-lg-2 mr-0" href="#"><img class="img-fluid mx-auto d-block" src="{{ asset('images/wliconcropped.png') }}" style="height: 30px" alt=""></a>
+
   <ul class="navbar-nav px-3 ml-auto">
     @guest
         <li class="nav-item text-nowrap">

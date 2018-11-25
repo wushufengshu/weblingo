@@ -7,6 +7,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use \App\Admin;
+use \App\Course;
 
 
 class UserAdminController extends Controller
@@ -34,7 +35,8 @@ class UserAdminController extends Controller
      */
     public function create()
     {
-        return view('admin.user-admins.create');
+        $courses = Course::all();
+        return view('admin.user-admins.create', compact('courses'));
     }
 
     /**
@@ -50,6 +52,7 @@ class UserAdminController extends Controller
             'last_name' => 'required|string|max:30',
             'email' => 'required|string|email|max:30|unique:admins',
             'address' => 'required|string|max:255',
+            'admin_at' => 'required|string|max:255',
             'password' => 'required|string|min:6|confirmed',
         ]);
 
@@ -58,6 +61,8 @@ class UserAdminController extends Controller
             'last_name' => request('last_name'),
             'email' => request('email'),
             'address' => request('address'),
+            'admin_at' => request('admin_at'),
+            'type' => request('type'),
             'password' => bcrypt(request('password'))
         ]);
 

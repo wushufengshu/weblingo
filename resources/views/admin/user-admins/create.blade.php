@@ -13,6 +13,7 @@
     <form method="POST" action="{{ route('user-admin.store') }}">    
       @method('POST')
       @csrf
+
       <div class="form-group row">
         <label for="name" class="col-md-2 col-form-label ">Name</label>
             <div class="col-md-4">
@@ -36,6 +37,18 @@
             <input id="address" type="address" class="form-control" name="address" placeholder="Address" value="" required>
           </div>
       </div>
+       <div class="form-group row">
+        <label for="admin_at" class="col-md-2 col-form-label ">Administrator at</label>
+          <div class="col-md-8">
+            <select class="form-control" id="admin_at" name="admin_at" id="admin_at" >
+              <option>--select--</option>
+              @foreach($courses as $course)
+              <option value="{{$course->name}}">{{$course->name}}</option>
+              @endforeach
+            </select>
+          </div>
+      </div>
+      <input type="hidden" name="type" value="admin">
 
       <div class="form-group row">
         <label for="password" class="col-md-2 col-form-label">Password</label>

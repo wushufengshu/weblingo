@@ -19,6 +19,8 @@ class CreateAdminsTable extends Migration
             $table->string('last_name');
             $table->string('email')->unique();
             $table->string('address');
+            $table->string('admin_at');
+            $table->string('type');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->softDeletes();
