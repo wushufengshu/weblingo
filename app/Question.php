@@ -8,10 +8,15 @@ class Question extends Model
 {
     protected $table = 'questions';
 
-    protected $fillable = ['course_id','question', 'score'];
+    protected $fillable = ['course_id','quiz_id','question', 'score'];
 
-    public function question_option()
+    public function quiz()
     {
-    	return $this->hasMany(QuestionOption::class);
+    	return $this->belongsTo(Quiz::class);
+    }
+
+    public function answer()
+    {
+        return $this->hasMany(Answer::class);
     }
 }

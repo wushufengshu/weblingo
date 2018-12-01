@@ -16,11 +16,12 @@ class CreateCodesTable extends Migration
         Schema::create('codes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('course_id');
-            $table->integer('content_id');
+            $table->integer('lesson_id');
             $table->string('heading');
-            $table->text('html-code');
-            $table->text('css-code');
-            $table->text('javascript-code');
+            $table->text('heading_body')->nullable();
+            $table->text('html-code')->nullable();
+            $table->text('css-code')->nullable();
+            $table->text('javascript-code')->nullable();
             $table->timestamps();
         });
     }

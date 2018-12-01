@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Admin;
 use App\Course;
-use App\Content;
+use App\Lesson;
 
 class CourseController extends Controller
 {
@@ -48,15 +48,18 @@ class CourseController extends Controller
             'name' => 'required|unique:courses|min:3|max:25',
             'slug' => 'required|alpha_dash|unique:courses|min:3|max:25',
             'description' => 'required|max:255',
-            'course_image' => 'required|image'
+            'course_image' => 'image|nullable|max:1999'
         ]);
-        // $file = request(file('course_image'));
-        if($file = $request->file('course_image')){
-        $course_image_name = $file->getClientOriginalName();
-            if($file->move('images', $course_image_name)){
-            $admin->addCourse(request('name'),request('slug'), request('description'), $course_image_name);
-            }
+        if(request()->hasFile('course_image')){
+            $file_name = $request->file('course_image')->getClientOriginalName();
+            $image_name = pathinfo($file_name, PATHINFO_FILENAME);
+            $image_extension = $request->file('course_image')->getClientOriginalExtension();
+            $image_name_to_store = $image_name . '_' .time() . '.'.$image_extension;
+            $path = $request->file('course_image')->storeAs('public/images', $image_name_to_store);
         }
+
+        $admin->addCourse(request('name'),request('slug'), request('description'), $image_name_to_store );
+            
         session()->flash('message', 'Course added');
 
         return redirect()->route('admin.home');
@@ -71,8 +74,8 @@ class CourseController extends Controller
     public function show(Course $course)
     {   
         $course_slug = $course->slug;
-        $contents = Content::get();
-        return view('admin.course.content.index',compact('course', 'course_slug','contents'));
+        $lessons = Lesson::get();
+        return view('admin.course.lesson.index',compact('course', 'course_slug','lessons'));
     }
 
     
@@ -110,4 +113,5 @@ class CourseController extends Controller
     {
         //
     }
+
 }

@@ -17,14 +17,14 @@ class UserAdminTableSeeder extends Seeder
         Admin::truncate();
 
         Admin::create([
-                'first_name' => 'Den',
-                'last_name' => 'Casquejo',
-                'email' => 'redencasquejo@gmail.com',
-                'address' => 'Cavite',
-                'admin_at' => 'Super Admin',
-                'type' => 'super_admin',
-                'password' => bcrypt('asdasd')
-            ]); 
+            'first_name' => 'Den',
+            'last_name' => 'Casquejo',
+            'email' => 'redencasquejo@gmail.com',
+            'address' => 'Cavite',
+            'admin_at' => 'Super Admin',
+            'type' => 'super_admin',
+            'password' => bcrypt('asdasd')
+        ]); 
 
         foreach (range(1, 3) as $index) 
         {

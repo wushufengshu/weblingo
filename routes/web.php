@@ -2,12 +2,15 @@
 
 Auth::routes(['verify' => true]);
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::prefix('/')->group(function(){
+    // Route::get('', 'HomeController@index')->name('home');
 
+    Route::get('/', 'HomeController@home')->name('home')->middleware('verified');
 
+    Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
-Route::get('/home', 'HomeController@home')->name('user.home')->middleware('verified');
-Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
+    Route::get('/{course}', 'CourseController');
+});
 
 Route::prefix('admin')->group(function() {
     Route::get('/', 'AdminController@index')->name('admin.home');
@@ -20,19 +23,19 @@ Route::prefix('admin')->group(function() {
 
     Route::resource('course', 'CourseController')->except('show');
 
-    Route::resource('content', 'ContentController')->except('show');
+    Route::resource('lesson', 'LessonController')->except('show');
+
+    Route::resource('quiz', 'QuizController');
+
+    Route::get('quiz/quiz_details', 'QuizController@quiz_details')->name('quiz.quiz_details');
 
     Route::resource('questions', 'QuestionController');
 
-    Route::get('course/{course}', 'ContentController@index')->name('course.show');
+    Route::get('course/{course}', 'LessonController@index')->name('course.show');
 
-    Route::post('course/{course}/content/create', 'ContentController@add_snippet')->name('content.add_snippet');
+    Route::post('course/{course}/lesson/create', 'LessonController@add_snippet')->name('lesson.add_snippet');
 
-    Route::get('/course/{course}/content/create','ContentController@createContent')->name('content.create');
+    Route::get('/course/{course}/lesson/create','LessonController@createLesson')->name('lesson.create');
     
-    Route::get('/course/{course}/{content}','ContentController@showContent')->name('content.show');
-
-    
-
-
+    Route::get('/course/{course}/{lesson}','LessonController@showLesson')->name('lesson.show');
 });

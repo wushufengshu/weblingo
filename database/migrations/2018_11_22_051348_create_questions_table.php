@@ -15,9 +15,9 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('course_id');
-            $table->text('question');
-            $table->integer('score');
+            $table->integer('course_id');
+            $table->integer('quiz_id')->nullable();
+            $table->text('body');
             $table->timestamps();
         });
     }

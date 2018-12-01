@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Question;
-use App\QuestionOption;
+use App\Answer;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
@@ -20,9 +20,12 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Question $question)
+    public function index(Question $question, Answer $question_options)
     {
         $questions = Question::paginate(10);
+
+        $correct_answer = $question_options->where('question_id', $question->id)->get();
+        
         return view('admin.question.index', compact('questions'));
     }
 
@@ -58,7 +61,7 @@ class QuestionController extends Controller
         foreach (range(1,4 ) as $range ) {
             $option = request('option_' . $range);
             if($option != ''){
-                QuestionOption::create([
+                Answer::create([
                     'question_id' => $question->id,
                     'option' => $option,
                     'correct' => $request->input('correct_' . $range)

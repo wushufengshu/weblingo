@@ -1,4 +1,4 @@
-<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+<nav class="col-md-2 d-none d-md-block sidebar">
   <div class="sidebar-sticky">
     <ul class="nav flex-column">
       <li class="nav-item">
@@ -20,9 +20,9 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="users"></span>
-          Assessment
+        <a class="nav-link" href="{{ route('quiz.index')}}">
+          <span data-feather="file-text"></span>
+          Quiz
         </a>
       </li>
       <li class="nav-item">
@@ -50,3 +50,7 @@
     
   </div>
 </nav>
+
+
+
+<!-- #END# Right Sidebar -->

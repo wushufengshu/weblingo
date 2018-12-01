@@ -13,7 +13,6 @@
         </li>
     @else
         <li class="nav-item dropdown text-nowrap">
-            {{-- <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre> --}}
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbarDropdown">
                 {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}<span class="caret"></span>
             </a>

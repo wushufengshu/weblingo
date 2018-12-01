@@ -19,7 +19,7 @@ class CreateContentsTable extends Migration
             $table->integer('course_id');
             $table->string('title');
             $table->string('slug')->unique();
-            $table->text('body');
+            $table->text('body')->nullable();
             $table->timestamps();
         });
     }

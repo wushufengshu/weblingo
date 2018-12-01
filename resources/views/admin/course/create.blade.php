@@ -32,13 +32,14 @@
       <div class="form-group row">
         <label for="slug" class="col-md-2 col-form-label ">Page Title</label>
           <div class="col-md-8">
-            <input id="slug" type="text" class="form-control" name="slug" value="" placeholder="This will be displayed for the users. eg: a.test/html" required autofocus>
+            <input id="slug" type="text" class="form-control" name="slug" value="" placeholder="Url name" required autofocus>
           </div>
       </div>
       <div class="form-group row">
         <label for="description" class="col-md-2 col-form-label ">Description</label>
           <div class="col-md-8">
-            <input id="description" type="text" class="form-control" name="description" value="" placeholder="Description" required autofocus>
+            {{-- <input id="description" type="text" class="form-control" name="description" value="" placeholder="Description" required autofocus> --}}
+            <textarea id="description"  class=" form-control ckeditor" name="description" placeholder="Description" value="" rows="5" required autofocus></textarea> 
           </div>
       </div>      
       <div class="form-group row">

@@ -19,29 +19,25 @@ class CourseTableSeeder extends Seeder
         Course::create([
         		'admin_id' => $admin,
                 'name' => 'HTML5',
-                'description' => 'HTML Tutorial',
-                'slug' => 'html'
+                'description' => 'HyperText Markup Language (HTML) is a simple markup system used to create hypertext documents that are portable from one platform to another.',
+                'slug' => 'html',
+                'image' => 'HTML5-LOGO_1543265372.png'
             ]
         ); 
         Course::create([
                 'admin_id' => $admin,
                 'name' => 'CSS3',
                 'description' => 'CSS is a language that describes the style of an HTML document.  CSS describes how HTML elements should be displayed.  This tutorial will teach you CSS from basic to advanced.',
-                'slug' => 'css'
+                'slug' => 'css',
+                'image' => 'CSS3-LOGO_1543329627.png'
             ]
         ); 
         Course::create([
                 'admin_id' => $admin,
                 'name' => 'JAVASCRIPT',
                 'description' => 'JavaScript is the programming language of HTML and the Web.  JavaScript is easy to learn.  This tutorial will teach you JavaScript from basic to advanced.',
-                'slug' => 'javascript'
-            ]
-        ); 
-        Course::create([
-                'admin_id' => $admin,
-                'name' => 'JQUERY',
-                'description' => 'jQuery is a JavaScript Library.  jQuery greatly simplifies JavaScript programming.  jQuery is easy to learn.',
-                'slug' => 'jquery'
+                'slug' => 'javascript',
+                'image' => 'JAVASCRIPT-LOGO_1543331559.png'
             ]
         ); 
     }

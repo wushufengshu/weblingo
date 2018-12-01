@@ -9,7 +9,7 @@ class Code extends Model
     protected $table = 'codes';
 
     protected $fillable = [
-    	'course_id','content_id', 'heading', 'code'
+    	'course_id','lesson_id', 'heading','heading_body', 'html-code', 'css-code', 'javascript-code'
     ];
 
 

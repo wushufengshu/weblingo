@@ -95,18 +95,39 @@ class ContentController extends Controller
             'body' => request('body'),
         ]);
 
-        if(request()->has(['heading[]','html-code[]','css-code[]','javascript-code[]'])){
-            $this->validate(request(), [
-                'heading' => 'required|min:3|max:50',
-            ]);
-            $code = Code::create([
-                'course_id' => request('course_id'),
-                'content_id' => $content->id,
-                'heading' => request('heading[]'),
-                'html' => request('html-code[]'),
-                'css' => request('css-code[]'),
-                'javascript' => request('javascript-code[]')
-            ]);  
+        // if(request()->has(['heading_1','html-code_1','css-code_1','javascript-code_1'])){
+        //     $this->validate(request(), [
+        //         'heading_1' => 'required|max:50',
+        //     ]);
+        //     Code::create([
+        //         'course_id' => request('course_id'),
+        //         'content_id' => $content->id,
+        //         'heading' => request('heading_1'),
+        //         'html-code' => request('html-code_1'),
+        //         'css-code' => request('css-code_1'),
+        //         'javascript-code' => request('javascript-code_1')
+        //     ]);
+        // }
+        $snippet_count = request('snippet_count');
+        foreach (range(1,$snippet_count) as $i) {
+            if(request()->has(['heading_' . $i,'html-code_' . $i,'css-code_' . $i,'javascript-code_' . $i])){
+
+                
+                $this->validate(request(), [
+                    'heading_'. $i => 'required|max:50',
+                ]);
+            
+                Code::create([
+                    'course_id' => request('course_id'),
+                    'content_id' => $content->id,
+                    'heading' => request('heading_' . $i),
+                    'html-code' => request('html-code_' . $i),
+                    'css-code' => request('css-code_' . $i),
+                    'javascript-code' => request('javascript-code_' . $i)
+                ]);  
+
+            }
+            
         }
 
         session()->flash('message', 'Content added');
@@ -120,10 +141,11 @@ class ContentController extends Controller
      * @param  \App\Content  $content
      * @return \Illuminate\Http\Response
      */
-    public function showContent(Course $course, Content $content)
+    public function showContent(Course $course, Content $content, Code $code)
     {
         $this->authorize('view', $course);
-        return view('admin.course.content.show', compact('course','content'));
+        $codes = $code->where('content_id', $content->id)->get();
+        return view('admin.course.content.show', compact('course','content','codes'));
     }
 
     /**

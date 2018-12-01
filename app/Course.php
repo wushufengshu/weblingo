@@ -15,8 +15,8 @@ class Course extends Model
 		return $this->belongsTo(Admin::class);
 	}
 
-	public function content(){
-		return $this->hasMany(Content::class);
+	public function lesson(){
+		return $this->hasMany(Lesson::class);
 	}
 
 	public function getRouteKeyName()
