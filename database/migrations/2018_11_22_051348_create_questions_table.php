@@ -18,6 +18,7 @@ class CreateQuestionsTable extends Migration
             $table->integer('course_id');
             $table->integer('quiz_id')->nullable();
             $table->text('body');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -22,7 +22,7 @@
 		        </button>
 		      </div>
 		      <div class="modal-body">
-		        <form method="GET" action="{{ route('quiz.create') }}">    
+		        <form method="POST" action="{{ route('quiz.store') }}">    
 			      @method('POST')
 			      @csrf
 			      <div class="form-group row">
@@ -38,46 +38,13 @@
 			          <input id="slug" type="text" class="form-control" placeholder="Enter slug" name="slug" value="" required autofocus>
 			        </div>
 			      </div>
-
-			      <div class="form-group row">
-			        <label for="quiz_for" class="col-md-2 col-form-label ">Quiz For</label>
-			        <div class="col-md-10">
-			          <select class="form-control" name="quiz_for">
-			            <option>--SELECT--</option>
-
-			            @foreach($courses as $course)
-			            <option value="{{$course->name}}" >{{$course->name}}</option>
-			            @endforeach
-			          </select>
-			        </div>
-			      </div>
-
-			      <div class="form-group row">
-			        <label for="number_of_questions" class="col-md-2 col-form-label ">Number of Questions</label>
-			        <div class="col-md-10">
-			          <input id="number_of_questions" placeholder="Enter total number of questions" type="number" class="form-control" name="number_of_questions" value="" required>
-			        </div>
-			      </div>
-
-			      <div class="form-group row" id="row">
-			        <label for="description" class="col-md-2 col-form-label ">Short description</label>
-			        <div class="col-md-10">
-			          <textarea id="description"  class=" form-control ckeditor" name="description" placeholder="Content description" value="" rows="5" required autofocus></textarea> 
-			        </div>
-			      </div>
-
-			     {{--  <div class="form-group">
-			        <div class="col-md-12 ">
-			            
-			        </div>
-			      </div> --}}
 			      @include('admin.layouts.errors')
 			      
 			    
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        <button type="submit" class="btn btn-success float-right">Save</button>
+		        <button type="submit" class="btn btn-primary float-right">Save</button>
 		      </div>
 		  	</form>
 		    </div>
@@ -95,21 +62,39 @@
 		    </div> --}}
 	 	 </div>
 	</div>
-	
-	<div class="table-responsive form-group col-md-10">
+	<div class="table-responsive form-group col-md-12">
 		
 		<table class="table table-hover mw-100" border="0">
 			
 			<tr class="table-active">
 				<th width="20%">Quiz</th>
-				<th width="25%">Quiz For</th>
 				<th width="15%">Total Questions</th>
+				<th>Average Result</th>
+				<th>QuizWiz</th>
+				<th class="text-center"width="20%">Action</th>
 			</tr>
 			@foreach($quizzes as $quiz)
 			<tr>
 				<td><a href="{{ route('quiz.show', $quiz->slug) }}">{{$quiz->name}}</a></td>
-				<td> {{$quiz->for}} </td>
-				<td>{{$total_questions}}</td>
+				<td>{{count($quiz->questions)}}</td>
+				<td>{{$quiz->tests_results->where('quiz_id', $quiz->id)->avg('tests_result')}}</td>
+				<td>{{$quiz->tests_results->max('tests_result')}}</td>
+				<td>
+					<div class="form-group row">
+
+						<a href="{{ route('quiz.edit', $quiz->id) }}" class="btn btn-secondary mx-auto">Update</a>
+
+						<form method="POST" class="mx-auto" action="{{route('quiz.destroy', $quiz->id)}}">
+							@method('DELETE')
+							@csrf
+							<div class="field">
+								<div class="control">
+									<button type="submit" class="btn btn-danger">Delete</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</td>
 			</tr>
 			@endforeach
 

@@ -37,6 +37,11 @@ class Course extends Model
 					->get();
 	}
 
+	public static function allCourse()
+	{
+		return static::all();
+	}
+
 	public function addContent($course_id,$title,$slug,$body)
     {
         // $this->categories()->create(compact('name','description'));

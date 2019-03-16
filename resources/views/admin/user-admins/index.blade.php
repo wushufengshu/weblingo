@@ -3,7 +3,7 @@
 @section('page-name')
 
 <div class="row">
-<h1 class="h2">List of all Admins</h1>
+<h1 class="h2">Admins</h1>
     <div class="btn-toolbar mb-2 mb-md-0 ml-auto">
     	<a class="btn btn-primary" href="/admin/user-admin/create">Create an user admin  <span data-feather="user-plus"></span></a>
     </div>
@@ -15,7 +15,6 @@
 		<div class="form-group row">
 		    <label for="search" class="col-md-3 h3 "></label>
 		    <div class="col-md-5 mx-auto">
-		      <input type="text" class="form-control col-md" id="search" placeholder="Search" aria-label="Search">
 		    </div>
 	 	 </div>
 	</div>
@@ -29,7 +28,7 @@
 				<th width="20%">Email</th>
 				<th width="30%">Address</th>
 				<th>Adminstrator at</th>
-				<th class="text-center">Action</th>
+				<th class="text-center" width="20%">Action</th>
 			</tr>
 			{{-- @foreach($admins->except(Auth::id()) as $admin) --}}
 			@foreach($admins as $admin)

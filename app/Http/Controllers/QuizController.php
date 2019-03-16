@@ -22,10 +22,13 @@ class QuizController extends Controller
      */
     public function index(Quiz $quiz)
     {
-        $quizzes = Quiz::all();
-        $courses = Course::all();
-        $total_questions = count($quiz->questions);
-        return view('admin.quiz.index', compact('quizzes','total_questions', 'courses'));
+        $quizzes = $quiz->all();
+        // $courses = Course::all();
+        // $tests = $quiz->tests_results->first();
+        // $quiz_average = $quiz->where()
+        // $average = $tests->tests_result;
+        // $total_questions = count($quiz->questions);
+        return view('admin.quiz.index', compact('quizzes', 'total_questions','average', 'courses'));
     }
 
     /**
@@ -49,9 +52,9 @@ class QuizController extends Controller
         $quiz_for = request('quiz_for');
         $number_of_questions = (int)request('number_of_questions');
         $description = request('description');
+        $number_of_option = 2;
 
-
-        return view('admin.quiz.create', compact('courses','quiz_name','quiz_for','slug','number_of_questions','description'));
+        return view('admin.quiz.create', compact('courses','quiz_name','quiz_for','slug','number_of_questions','description','number_of_option'));
     }
 
     
@@ -63,35 +66,18 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
-        return Input::get();
+        $this->validate(request(), [
+            'quiz_name' => 'required|string|max:30',
+            'slug' => 'required|unique:quizzes|string',
+        ]);
+
         $quiz = Quiz::create([
-            'name' => Input::get('quiz_name'),
-            'for' => Input::get('quiz_for'),
-            'slug' => Input::get('slug'),
-            'description' => Input::get('description'),
+            'admin_id' => auth()->id(),
+            'name' => request('quiz_name'),
+            'slug' => request('slug'),
         ]);
         
-        // foreach (range(1,request('number_of_questions')) as $question) {
-            // foreach (Input::get('question') as $question => $value) {
-            //      $question;
-            // }
-            // foreach (Input::get('score') as $score) {
-            //      $score;
-            // }
-            // $questions = Question::create([
-            //     'course_id' => 1,
-            //     'quiz_id' => $quiz->id,
-            //     'question' =>$value,
-            //     'score' => $score
-            // ]);
-
-            $question = new Question;
-            $question->course_id = 1;
-            $question->quiz_id = 1;
-            $question->question = $request->get('question');
-            $question->score = $request->get('score');
-            $question->save();
-        // }
+        return redirect()->route('quiz.index');
     }
 
     /**
@@ -112,9 +98,10 @@ class QuizController extends Controller
      * @param  \App\Assessment  $assessment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Quiz $quiz)
+    public function edit($id)
     {
-        return view('admin.quiz.edit');
+        $quiz = Quiz::findOrFail($id);
+        return view('admin.quiz.edit', compact('quiz'));
     }
 
     /**
@@ -124,9 +111,22 @@ class QuizController extends Controller
      * @param  \App\Assessment  $assessment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Quiz $quiz)
+    public function update(Request $request, $id)
     {
-        //
+        $quiz = Quiz::findOrFail($id);
+        $this->validate(request(), [
+            'name' => 'required|string|max:30',
+            'slug' => 'required|string',
+        ]);
+
+        $quiz->name = request('name');
+        $quiz->slug = request('slug');
+
+        $quiz->save();
+
+        session()->flash('message', 'The quiz is updated successfully.');
+        
+        return redirect()->route('quiz.index');
     }
 
     /**
@@ -135,9 +135,12 @@ class QuizController extends Controller
      * @param  \App\Assessment  $assessment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Quiz $quiz)
+    public function destroy($id)
     {
-        //
+        $quiz = Quiz::findOrFail($id)->delete();
+        // return redirect()->back();
+        session()->flash('message', 'The quiz is deleted successfully.');
+        return redirect()->back();
     }
 
     public function quiz_details()
@@ -146,5 +149,54 @@ class QuizController extends Controller
 
         return view('admin.quiz.quiz_details', compact('courses'));
     }
+
+    //     $quiz = Quiz::where('slug', $quiz_slug)->firstOrFail();
+    //     $answers = [];
+    //     $score = 0;
+    //     foreach ($request->get('answers') as $question_id => $answer_id) {
+    //         $correct = Answer::where('question_id', $question_id)
+    //         ->where('id', $answer_id)
+    //         ->where('correct', 1)->count() > 0;
+
+    //         $answers[] = [
+    //             'question_id' => $question_id,
+    //             'answer_id' => $answer_id,
+    //             'correct' => $correct
+    //         ];
+    //         if($correct){
+    //             $score += 1;
+    //         }
+    //     }
+    //     $test_result = TestsResult::create([
+    //         'quiz_id' => $quiz->id,
+    //         'user_id' => auth()->id(),
+    //         'tests_result' => $score
+    //     ]);
+    //     $test_result->answers()->createMany($answers);
+
+    //     return view('users.quiz.result', compact('quiz_slug', 'score', 'quiz'));
+
+    // public function createQuestions(Quiz $quiz)
+    // {
+    //     // $quiz_name = request('quiz_name');
+    //     // $quiz = Quiz::where('name', $quiz_name)->firstOrFail();
+    //     $number_of_questions = 0;
+
+    //     return view('admin.questions.create', compact('quiz','number_of_questions'));
+    // }
+
+    // public function add_questions(Quiz $quiz, Request $request)
+    // {
+    //     $number_of_questions = request('number_of_questions');
+    //     return view('admin.questions.create', compact('quiz', 'number_of_questions'));
+    // }
+    // public function storeQuestions(Request $request)
+    // {
+    //     dd($request->get('questions'));
+    //     // $questions = [];
+    //     // foreach ($request->get('questions') as $key => $value) {
+    //     //     # code...
+    //     // }
+    // }
 
 }

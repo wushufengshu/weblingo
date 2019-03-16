@@ -25,6 +25,15 @@ class UserAdminTableSeeder extends Seeder
             'type' => 'super_admin',
             'password' => bcrypt('asdasd')
         ]); 
+        Admin::create([
+            'first_name' => 'Nikki',
+            'last_name' => 'Vista',
+            'email' => 'nhyangnyang@gmail.com',
+            'address' => 'Cavite',
+            'admin_at' => 'HTML5',
+            'type' => 'admin',
+            'password' => bcrypt('asdasd')
+        ]); 
 
         foreach (range(1, 3) as $index) 
         {

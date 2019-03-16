@@ -49,6 +49,21 @@ class Admin extends Authenticatable
     {
         return $this->hasMany(Course::class);
     }
+
+    public function video()
+    {
+        return $this->hasMany(Video::class);
+    }
+
+    public function media()
+    {
+        return $this->hasMany(Media::class);
+    }
+
+    public function quiz()
+    {
+        return $this->hasMany(Quiz::class);
+    }
     public function isAdmin()
     {
         return $this->where('admin_at' == 'Super Admin');

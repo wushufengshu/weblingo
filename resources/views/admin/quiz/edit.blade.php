@@ -9,36 +9,26 @@
 </div>
 @endsection
 @section('content')
-  <div class="wrapper container">
-    <form method="POST" action="{{ route('users.update', $user->id) }}">    
+  <div class="wrapper container card bg-transparent">
+    <form method="POST" action="{{ route('quiz.update', $quiz->id) }}">    
       @method('PATCH')
       @csrf
-      <div class="form-group row">
-        <label for="name" class="col-md-2 col-form-label ">Name</label>
-            <div class="col-md-4">
-              <input type="text" class="form-control" placeholder="First name" name="first_name" required>
-            </div>
-            <div class="col-md-4">
-              <input type="text" class="form-control" placeholder="Last name" name="last_name" required>
-            </div>
-      </div>
 
       <div class="form-group row">
-        <label for="email" class="col-md-2 col-form-label ">E-Mail Address</label>
-          <div class="col-md-8">
-            <input id="email" type="email" class="form-control" name="email" value="{{$user->email}}" required>
+        <label for="name" class="col-md-2 col-form-label ">Quiz</label>
+          <div class="col-md-10">
+            <input id="name" type="text" class="form-control" name="name" value="{{$quiz->name}}" required>
           </div>
       </div>
-
-     {{--  <div class="form-group row">
-        <label for="address" class="col-md-2 col-form-label ">Address</label>
-          <div class="col-md-8">
-            <input id="address" type="address" class="form-control" name="address" value="{{$user->address}}" required>
+      <div class="form-group row">
+        <label for="slug" class="col-md-2 col-form-label ">Slug</label>
+          <div class="col-md-10">
+            <input id="slug" type="text" class="form-control" name="slug" value="{{$quiz->slug}}" required>
           </div>
-      </div> --}}
+      </div>
       <div class="form-group">
-        <div class="col-md-8 ">
-            <button type="submit" class="btn btn-primary" >
+        <div class="col-md-12 ">
+            <button type="submit" class="btn btn-primary float-right" >
                 Register
             </button>
         </div>

@@ -1,5 +1,7 @@
-<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow navbar-expand-md">
-  <a class="navbar-brand col-lg-2 mr-0" href="#"><img class="img-fluid mx-auto d-block" src="{{ asset('images/wliconcropped.png') }}" style="height: 30px" alt=""></a>
+<nav class="navbar navbar-dark fixed-top flex-md-nowrap p-0 shadow navbar-expand-md"  style="background:#008080;">
+  <a class="navbar-brand col-lg-2 mr-0" href="#"><img class="img-fluid mx-auto " src="{{ asset('images/WLLogo.png') }}" style="height: 30px" alt="">
+    {{ config('app.name', 'Antidote') }}
+  </a>
 
   <ul class="navbar-nav px-3 ml-auto">
     @guest

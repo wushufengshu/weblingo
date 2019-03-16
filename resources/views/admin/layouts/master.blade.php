@@ -22,7 +22,7 @@
     
   </head>
 
-  <body>
+  <body style="background: #d9dde0;">
     @include ('admin.layouts.nav')
 
     <div class="container-fluid">

@@ -41,4 +41,14 @@ class User extends Authenticatable implements MustVerifyEmail
     // {
     //     $this->notify(new AdminResetPasswordNotification($token));
     // }
+    public function tests_result()
+    {
+        return $this->hasMany(TestsResult::class);
+        
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comments::class);
+    }
 }

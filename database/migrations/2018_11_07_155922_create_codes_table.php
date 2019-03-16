@@ -19,9 +19,9 @@ class CreateCodesTable extends Migration
             $table->integer('lesson_id');
             $table->string('heading');
             $table->text('heading_body')->nullable();
-            $table->text('html-code')->nullable();
-            $table->text('css-code')->nullable();
-            $table->text('javascript-code')->nullable();
+            $table->text('html_code')->nullable();
+            $table->text('css_code')->nullable();
+            $table->text('javascript_code')->nullable();
             $table->timestamps();
         });
     }

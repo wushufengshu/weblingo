@@ -12,14 +12,13 @@
 @section('content')
 	<div class="wrapper container">
 		<div class="form-group row">
-		    <label for="search" class="col-md-3 h3 ">List of all Users</label>
+			<label for="search" class="col-md-3 h3 "></label>
 		    <div class="col-md-5 mx-auto">
-		      <input type="text" class="form-control col-md" id="search" placeholder="Search" aria-label="Search">
 		    </div>
 	 	 </div>
 	</div>
 	
-	<div class="table-responsive form-group col-md-10">
+	<div class="table-responsive form-group col-md-12">
 		
 		<table class="table table-hover mw-100" border="0">
 			
@@ -28,7 +27,7 @@
 				<th width="25%">Email</th>
 				<th width="15%">Date Registered</th>
 				<th width="15%">Date Verified</th>
-				<th class="text-center">Action</th>
+				<th class="text-center"width="20%">Action</th>
 			</tr>
 			@foreach($users->all() as $user)
 			<tr>
@@ -38,7 +37,7 @@
 				<td>@if($user->email_verified_at != null)
 						{{$user->email_verified_at}}
 					@else
-						 
+						 Not yet verified
 					@endif
 				</td>
 				<td>

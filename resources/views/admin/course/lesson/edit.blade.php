@@ -9,43 +9,43 @@
 </div>
 @endsection
 @section('content')
-<div class="table-responsive ">
-  <div class="wrapper container">
-    {{-- <form method="POST" action="{{ route('users.update', $user->id) }}">    
+  <div class="wrapper container card col-md-12 bg-transparent">
+    <form method="POST" action="{{ route('lesson.update', $lesson->id) }}">    
       @method('PATCH')
       @csrf
       <div class="form-group row">
-        <label for="name" class="col-md-2 col-form-label ">Name</label>
-          <div class="col-md-8">
-            <input id="name" type="text" class="form-control" name="name" value="{{$user->name}}" required autofocus>
+        <label for="title" class="col-md-2 col-form-label ">Lesson Title</label>
+        <div class="col-md-10">
+          <input id="title" type="text" class="form-control" name="title" value="{{$lesson->title}}" placeholder="Lesson title" required autofocus>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="slug" class="col-md-2 col-form-label ">Page Title</label>
+        <div class="input-group col-md-10">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="course_slug">{{$course->slug }}/</span>
           </div>
+          <input id="slug" type="text" class="form-control" name="slug" placeholder="Page title" value="{{$lesson->slug}}" required autofocus aria-describedby="course_slug">
+        </div>
       </div>
 
-      <div class="form-group row">
-        <label for="email" class="col-md-2 col-form-label ">E-Mail Address</label>
-          <div class="col-md-8">
-            <input id="email" type="email" class="form-control" name="email" value="{{$user->email}}" required>
-          </div>
-      </div> --}}
-
-     {{--  <div class="form-group row">
-        <label for="address" class="col-md-2 col-form-label ">Address</label>
-          <div class="col-md-8">
-            <input id="address" type="address" class="form-control" name="address" value="{{$user->address}}" required>
-          </div>
-      </div> --}}
-      {{-- <div class="form-group">
-        <div class="col-md-8 ">
-            <button type="submit" class="btn btn-primary" >
+      <div class="form-group row" id="row">
+        <label for="body" class="col-md-2 col-form-label ">Body</label>
+        <div class="col-md-10">
+          <textarea id="body"  class=" form-control ckeditor" name="body" placeholder="Content body" value="" rows="5" required autofocus>{{$lesson->body}}</textarea> 
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-12 ">
+            <button type="submit" class="btn btn-primary float-right" >
                 Register
             </button>
         </div>
-      </div> --}}
+      </div>
       @include('admin.layouts.errors')
       
 
   </div>
-</div>
 
 
 @endsection

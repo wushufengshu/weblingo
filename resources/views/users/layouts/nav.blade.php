@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background:#008080;">
     <div class="container">
-        <a class="navbar-brand text-light" href="{{ url('/') }}">
-            {{ config('app.name', 'Antidote') }}
+        <a class="navbar-brand text-light" href="{{ url('/') }}"><img src="{{ asset('images/WLLogo.png') }}" class="img-fluid p-0 m-0 " style="height: 50px; width: 40px" alt="">
+            {{-- {{ config('app.name', 'Antidote') }} --}}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -18,11 +18,11 @@
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link text-light" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
                     <li class="nav-item">
                         @if (Route::has('register'))
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link text-light" href="{{ route('register') }}">{{ __('Register') }}</a>
                         @endif
                     </li>
                 @else

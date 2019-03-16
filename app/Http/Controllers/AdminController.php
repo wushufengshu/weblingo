@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Course;
 use \Auth;
+use App\Video;
+use App\Quiz;
+use App\TestsResult;
+
 class AdminController extends Controller
 {
     /**
@@ -24,8 +28,10 @@ class AdminController extends Controller
      */
     public function index(Course $courses)
     {
-        
-        return view('admin.dashboard.index', compact('courses'));
+        $videos = Video::all();
+        $quizzess = Quiz::all();
+        $tests_results = TestsResult::all();
+        return view('admin.dashboard.index', compact('courses','tests_results', 'videos','quizzess'));
     }
     // public function dashboard()
     // {

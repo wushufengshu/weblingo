@@ -15,8 +15,13 @@ class DatabaseSeeder extends Seeder
         	UserAdminTableSeeder::class, 
         	UserTableSeeder::class, 
         	CourseTableSeeder::class,
-            LessonTableSeeder::class,
-            QuizTableSeeder::class
+            HtmlLessonTableSeeder::class,
+            HtmlQuizTableSeeder::class,
+            CssLessonTableSeeder::class,
+            CssQuizTableSeeder::class,
+            JavascriptQuizTableSeeder::class,
+            JavascriptLessonTableSeeder::class,
+            VideoTableSeeder::class
         ]);
     }
 }

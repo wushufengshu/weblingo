@@ -9,7 +9,7 @@ class Code extends Model
     protected $table = 'codes';
 
     protected $fillable = [
-    	'course_id','lesson_id', 'heading','heading_body', 'html-code', 'css-code', 'javascript-code'
+    	'course_id','lesson_id', 'heading','heading_body', 'html_code', 'css_code', 'javascript_code'
     ];
 
 
@@ -17,7 +17,7 @@ class Code extends Model
 		return $this->belongsTo(Course::class);
 	}
 
-	public function content(){
-		return $this->belongsTo(Content::class);
+	public function lesson(){
+		return $this->belongsTo(Lesson::class);
 	}
 }

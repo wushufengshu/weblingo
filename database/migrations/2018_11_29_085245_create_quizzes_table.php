@@ -15,8 +15,10 @@ class CreateQuizzesTable extends Migration
     {
         Schema::create('quizzes', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('admin_id');
             $table->string('name');
             $table->string('slug');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

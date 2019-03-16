@@ -3,12 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Quiz extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'quizzes';
 
-    protected $fillable = ['name', 'for','slug','description'];
+    protected $fillable = ['admin_id','name','slug'];
+
+    protected $dates = ['deleted_at'];
 
     public function getRouteKeyName()
 	{
@@ -18,5 +23,10 @@ class Quiz extends Model
     public function questions()
     {
     	return $this->hasMany(Question::class);
+    }
+
+    public function tests_results()
+    {
+        return $this->hasMany(TestsResult::class);
     }
 }

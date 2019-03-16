@@ -3,8 +3,9 @@
 @section('page-name')
 
 <div class="row">
-<h1 class="h2">{{$quiz->name }} Quiz</h1>
+<h1 class="h2">{{$quiz->name }} </h1>
     <div class="btn-toolbar mb-2 mb-md-0 ml-auto">
+		<a class="btn btn-primary" href="{{route('questions.create', $quiz->slug)}}"><span data-feather="file-plus" style="margin-right: 5px;"> </span>Add Question</a>
     </div>
 </div>
 @endsection
@@ -18,45 +19,37 @@
 		    </div>
 	 	 </div>
 	</div>
-	<div class="container  row col-md-12">
-		<div class="col-md-8 mw-100">
-			<div class="card">
-				
-			</div>
-		</div>
-		<div class="col-md-4 mw-100">
-			<div class="card">
-				
-			</div>
-		</div>
-		
-	</div>
 	
 	
 	
-	{{-- <div class="table-responsive form-group col-md-10">
-		
-		<table class="table table-hover" border="0">
+	
+	<div class="table-responsive form-group col-md-12">
+		<table class="table table-hover table-striped" border="0">
 			
 			<tr class="table-active">
-				<th >Name</th>
-				<th>Email</th>
-				<th>Address</th>
+				<th width="5%"></th>
+				<th width="50%">Questions</th>
+				<th class="text-center">Answers</th>
+				<th>Correct</th>
 			</tr>
+			@foreach($quiz->questions as $question)
 			<tr>
-				
+				<td>{{$loop->iteration}}</td>
+				<td>{{$question->body}}</td>
+				<td>
+					@foreach($question->answers as $answer)
+					{{$answer->answer}} <br>
+					@endforeach
+				</td>
+				<td>
+					{{-- {{$question->answers->where('correct', true)}} --}}
+					@foreach($question->answers->where('correct', true) as $correct)
+						{{$correct->answer}}
+					@endforeach
+				</td>
 			</tr>
-		</table>
-		
-	</div> --}}
-	{{-- <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">{{$quiz->name}}</h4>
-        </div>
-        <div class="card-body">
-            
-        </div>
-    </div> --}}
-</div>
+			@endforeach
+		</table>	
+    </div>	
 	
 @endsection

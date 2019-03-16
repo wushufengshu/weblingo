@@ -8,7 +8,7 @@ class Answer extends Model
 {
     protected $table = 'answers';
 
-    protected $fillable = ['question_id', 'option', 'correct'];
+    protected $fillable = ['question_id', 'answer', 'correct'];
 
     public function question(){
 		return $this->belongsTo(Question::class);

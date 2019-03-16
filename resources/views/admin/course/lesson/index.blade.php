@@ -10,7 +10,7 @@
 </div>
 @endsection
 @section('content')
-@foreach($lessons as $lesson)
+{{-- @foreach($lessons as $lesson)
 
 <ul class="list-unstyled list-group">
     <li class="list-item">
@@ -19,7 +19,42 @@
     	</a>
     </li>
 </ul>
-@endforeach
+@endforeach --}}
 
+<div class="table-responsive form-group col-md-12">
+		
+		<table class="table table-hover" border="0">
+			
+			<tr class="table-active">
+				<th >Title</th>
+				<th>Slug</th>
+				<th class="text-center" width="20%">Action</th>
+			</tr>
+			@foreach($lessons as $lesson)
+			<tr>
+				<td><a href="{{route('lesson.show', [$course_slug, $lesson->slug])}}">{{$lesson->title}}</a></td>
+				<td>{{$lesson->slug}}</td>
+				<td>
+					<div class="form-group row">
+
+						<a href="{{ route('lesson.edit', $lesson->id) }}" class="btn btn-secondary mx-auto">Update</a>
+
+						<form method="POST" class="mx-auto" action="{{route('lesson.destroy', $lesson->id)}}">
+							@method('DELETE')
+							@csrf
+							<div class="field">
+								<div class="control">
+									<button type="submit" class="btn btn-danger">Delete</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</td>
+
+			</tr>
+			@endforeach
+		</table>
+		
+	</div>
 
 @endsection

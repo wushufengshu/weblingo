@@ -3,29 +3,28 @@
 @section('page-name')
 
 <div class="row">
-<h1 class="h2 pr-2">Add Course Lesson to {{$course->name}}</h1>
+<h1 class="h2 pr-2">Add lesson content to {{$course->name}}</h1>
 
+    
+  <div class="btn-toolbar mb-2 mb-md-0 ml-auto">
     <form action="{{route('lesson.add_snippet', $course->slug)}}" method="POST"> 
       @method('POST')
       @csrf
-      <input type="number" id="snippet_count" min="0" max="5"  placeholder="Add Snippet" class="" style="width: 6rem" name="add_snippet" required>
-      <input type="submit" id="add" name="add" class="btn btn-info" value="Go">
+      <input type="hidden" id="snippet_count" min="0" max="5"  placeholder="Add Snippet" class="" style="width: 6rem" name="add_snippet" value="1" required>
+      <input type="submit" id="add" name="add" class="btn btn-success" value="Add snippet">
       
-    </form><div class="" id="output"></div>
+    </form>
+    <div class="" id="output"></div>
 
-  <div class="btn-toolbar mb-2 mb-md-0 ml-auto">
-    <form method="POST" action="{{ route('lesson.store') }}"> 
-    <button type="submit" class="btn btn-success float-right">
-        Add content
-    </button>
+    
 
   </div> 
 </div>
 
 @endsection
 @section('content')
-<div class=" container row m-0 card bg-light">
-  
+<div class=" container row m-0 card bg-transparent">
+<form method="POST" action="{{ route('lesson.store') }}">   
   <div class="col-md-12 card-body" id="add_snippet">
       @method('POST')
       @csrf
@@ -55,13 +54,14 @@
         </div>
       </div>
       
+    
       
     
     @if($snippet_count > 0)
       @foreach(range(1, $snippet_count) as $code_count)
       <hr>
       <div class="form-group row" id="row{{$code_count}}">
-        <label for="heading-body" class="col-md-2 col-form-label ">Snippet{{$code_count}}</label>
+        <label for="heading-body" class="col-md-2 col-form-label ">Snippet</label>
         <div class="col-md-10" id="add_snippet">
           
           <div class="input-group mb-3">        
@@ -94,22 +94,22 @@
               </div>
             </div>
 
-            <div role="tabpanel" class="card text-white bg-danger tab-pane fade m-0 p-0" id="html-editor{{$code_count}}">
+            <div role="tabpanel" class="card text-white bg-danger tab-pane = m-0 p-0 active" id="html-editor{{$code_count}}">
               <div class="card-body  m-0 p-1">
-                 <textarea id='html{{$code_count}}' placeholder="HTML Codes here" class="codeeditor-textarea" name="html-code_{{$snippet_count}}" autofocus  onkeyup="setFrame({{$code_count}});"></textarea>
+                 <textarea id='html{{$code_count}}' placeholder="HTML Codes here" class="codeeditor-textarea" name="html_code_{{$snippet_count}}" autofocus value=""  onkeyup="setFrame({{$code_count}});"></textarea>
               </div>
             </div>
 
             <div role="tabpanel" class="card text-white bg-primary tab-pane fade m-0 p-0" id="css-editor{{$code_count}}">
               <div class="card-body  m-0 p-1">
-                <textarea id="css{{$code_count}}" placeholder="CSS Codes here" class="codeeditor-textarea" name="css-code_{{$snippet_count}}" autofocus  onkeyup="setFrame({{$code_count}});"></textarea>
+                <textarea id="css{{$code_count}}" placeholder="CSS Codes here" class="codeeditor-textarea" name="css_code_{{$snippet_count}}" autofocus value=""  onkeyup="setFrame({{$code_count}});"></textarea>
 
               </div>
             </div>
 
             <div role="tabpanel" class="card text-white bg-warning tab-pane fade m-0 p-0" id="javascript-editor{{$code_count}}">
               <div class="card-body  m-0 p-1">
-                <textarea id="js{{$code_count}}" placeholder="JavaScript Codes here" class="codeeditor-textarea" name="javascript-code_{{$snippet_count}}" onkeyup="setFrame({{$code_count}});" autofocus ></textarea> 
+                <textarea id="js{{$code_count}}" placeholder="JavaScript Codes here" class="codeeditor-textarea" name="javascript_code_{{$snippet_count}}" onkeyup="setFrame({{$code_count}});" autofocus value="" ></textarea> 
               </div>
             </div>
 
@@ -121,7 +121,9 @@
     
       
       @include('admin.layouts.errors')
-     
+     <button type="submit" class="btn btn-primary float-right">
+        Save content
+    </button>
 
     
   </div>

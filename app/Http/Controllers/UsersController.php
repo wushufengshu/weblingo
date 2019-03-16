@@ -45,7 +45,6 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('view', $course);
         $this->validate(request(), [
             'first_name' => 'required|string|max:30',
             'name' => 'required|string|max:30',
@@ -85,7 +84,6 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $this->authorize('view', $course);
         $user = User::findOrFail($id);
         return view('admin.users.edit',compact('user'));
     }
@@ -99,7 +97,6 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->authorize('view', $course);
         $user = User::findOrFail($id);
 
         $user->first_name = request('first_name');
@@ -122,7 +119,6 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        $this->authorize('view', $course);
         User::findOrFail($id)->delete();
         session()->flash('message', 'The user is deleted.');
         return redirect()->route('users.index');

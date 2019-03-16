@@ -75,27 +75,25 @@ class LessonController extends Controller
             'slug' => request('slug'),
             'body' => request('body'),
         ]);
-
+        // 
         $snippet_count = (int)request('snippet_count');
         foreach (range(1,$snippet_count) as $i) {
-            if(request()->has(['heading_' . $i,'heading_body_' . $i,'html-code_' . $i,'css-code_' . $i,'javascript-code_' . $i])){
+            if(request()->has(['heading_' . $i,'heading_body_' . $i,'html_code_' . $i,'css_code_' . $i,'javascript_code_' . $i])){
                 // $this->validate(request(), [
                 //     'heading_'. $i => 'required|max:50',
-                // ]);
+                // // ]);
+                // dd(request('html_code_' . $i));
                 $heading = request('heading_' . $i);
                 $heading_body = request('heading_body_' . $i);
-                $html_code = request('html-code_' . $i);
-                $css_code = request('css-code_' . $i);
-                $javascript_code = request('javascript-code_' . $i);
-            
+                
                 Code::create([
                     'course_id' => request('course_id'),
                     'lesson_id' => $lesson->id,
                     'heading' => $heading,
                     'heading_body' => $heading_body,
-                    'html-code' => $html_code,
-                    'css-code' => $css_code,
-                    'javascript-code' => $javascript_code
+                    'html_code' => request('html_code_' . $i),
+                    'css_code' => request('css_code_' . $i),
+                    'javascript_code' => request('javascript_code_' . $i)
                 ]);  
             }            
         }
@@ -104,6 +102,7 @@ class LessonController extends Controller
 
         return redirect()->route('course.show', compact('course_slug'));
     }
+    
 
     /**
      * Display the specified resource.
@@ -115,7 +114,9 @@ class LessonController extends Controller
     {
         $this->authorize('view', $course);
         $codes = $code->where('lesson_id', $lesson->id)->get();
-        return view('admin.course.lesson.show', compact('course','lesson','codes'));
+        $course_id = $course->id;
+        $snippet_count = 0;
+        return view('admin.course.lesson.show', compact('course','lesson','codes','course_id','snippet_count'));
     }
 
     /**
@@ -124,9 +125,12 @@ class LessonController extends Controller
      * @param  \App\Lesson  $lesson
      * @return \Illuminate\Http\Response
      */
-    public function edit(Lesson $lesson)
+    public function edit($id)
     {
-        //
+        $lesson = Lesson::findOrFail($id);
+        $course = Course::where('id', $lesson->course_id)->first();
+
+        return view('admin.course.lesson.edit', compact('lesson','course'));
     }
 
     /**
@@ -136,9 +140,21 @@ class LessonController extends Controller
      * @param  \App\Lesson  $lesson
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lesson $lesson)
+    public function update(Request $request, $id)
     {
-        //
+
+        $lesson = Lesson::findOrFail($id);
+        $course = Course::where('id', $lesson->course_id)->first();
+        $course_slug = $course->slug;
+        $course_id = $course->id;
+
+        $lesson->title = request('title');
+        $lesson->slug = request('slug');
+        $lesson->save();
+
+        session()->flash('message', 'Lesson updated');
+
+        return redirect()->route('lesson.show', compact('course','lesson', 'course_slug','course_id'));
     }
 
     /**
@@ -147,9 +163,12 @@ class LessonController extends Controller
      * @param  \App\Lesson  $lesson
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Lesson $lesson)
+    public function destroy($id)
     {
-        //
+        $lesson = Lesson::findOrFail($id)->delete();
+
+        session()->flash('message', 'Lesson deleted');
+        return redirect()->back();
     }
 
     public function add_snippet(Course $course,Request $request){

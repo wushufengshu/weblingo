@@ -5,33 +5,84 @@
 <div class="row">
 <h1 class="h2">Dashboard</h1>
     <div class="btn-toolbar mb-2 mb-md-0 ml-auto">
+      @if(auth()->user()->admin_at == 'Super Admin')
+      
         <a class="btn btn-primary" href="{{ route('course.create') }}">Add Course </a>
+      @endif
     </div>
 </div>
 @endsection
 @section('content')
-	
-   <div class="container-fluid">
+<div class="container col m-0 p-0">
+  <h3 class="">Courses</h3>
+  <div class="container">
+      <div class="card-deck">
 
-            <!-- Widgets -->
-            <div class="row clearfix">
-                @foreach($archives as $course)
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-pink hover-expand-effect">
-                        <div class="icon">
-                            {{-- <i class="material-icons">playlist_add_check</i> --}}
-                        </div>
-                        <div class="content">
-                            <div class="text">{{$course->name}}</div>
-                            <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-
-                </div>
-                @endforeach
+          @foreach($archives->take(3) as $course)
+          <div class="card border-secondary mb-3 bg-transparent" >
+            <div class="card-header"><a href="" class="text-dark"><b>{{$course->name}} </b></a></div>
+            <div class="card-body text-secondary">
+              <h5 class="card-title">Lesson Count: {{count($course->lesson)}}</h5>
+              <p class="card-text float-right"></p>
             </div>
-            <!-- #END# Widgets -->
+          </div> 
+          @endforeach
+      </div>
+  </div>
+  <hr>
+  <h3 class="">Video Tutorial</h3>
+  <div class="container">
+      <div class="card-deck">
+          @foreach($videos->take(3) as $video)
+          <div class="card border-secondary mb-3 bg-transparent" >
+            <div class="card-header"><a href="" class="text-dark"><b>{{$video->title}} </b></a></div>
+            <div class="card-body text-secondary">
+              <h5 class="card-title">Episode Count: {{count($video->media)}}</h5>
+              <p class="card-text float-right"></p>
+            </div>
+          </div> 
+          @endforeach
+      </div>
+  </div>
+  <hr>
+  <h3 class="">Quizzes</h3>
+  <div class="container">
+      <div class="card-deck">
 
-        </div>
-    </div>
+          @foreach($quizzess->take(3) as $quiz)
+          <div class="card border-secondary mb-3 bg-transparent" >
+            <div class="card-header"><a href="" class="text-dark"><b>{{$quiz->name}} </b></a></div>
+            <div class="card-body text-secondary">
+              <h5 class="card-title">Question Count: {{count($quiz->questions)}}</h5>
+              <p class="card-text float-right"></p>
+            </div>
+          </div> 
+          @endforeach
+      </div>
+  </div>
+    <h3 class="">Leaderboards</h3>
+  <div class="container">
+      <div class="card-deck">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Score</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Den</td>
+                <td>Mark</td>
+                <td>Otto</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+
+    
+    
 @endsection
