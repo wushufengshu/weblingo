@@ -18,6 +18,7 @@ class CreateQuizzesTable extends Migration
             $table->integer('admin_id');
             $table->string('name');
             $table->string('slug');
+            $table->integer('limit');
             $table->softDeletes();
             $table->timestamps();
         });

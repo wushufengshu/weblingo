@@ -15,12 +15,15 @@ use App\Answer;
 use App\TestsResult;
 use App\Video;
 use App\Media;
+use App\Application;
+use App\Career;
 
 class HomeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('index', 'course', 'aboutus', 'terms', 'acknowledgement', 'careers');
+        $this->middleware('auth')->except('index', 'course', 'aboutus', 'terms', 'acknowledgement', 'careers','showCareer','upload');
+        $this->middleware('guest')->only('index', 'course', 'aboutus', 'terms', 'acknowledgement', 'careers','showCareer','upload');
     }
     
 
@@ -118,9 +121,65 @@ class HomeController extends Controller
         return view('users.home.acknowledgement');
     }
 
-    public function careers()
+    public function careers(Application $application)
     {
-        return view('users.home.careers');
+        // $app = Application::find(1);
+        $careers = Career::all();
+        return view('users.home.careers', compact('app','careers'));
+    }
+    public function showCareer($id)
+    {
+        $career = Career::findOrFail($id);
+        return view('users.home.showCareer', compact('career'));
+    } 
+    public function upload(Application $application, Request $request)
+    {
+        // if(request()->hasFile('pdf')){
+        //     $file_name = $request->file('pdf')->getClientOriginalName();
+        //     $pdf_name = pathinfo($file_name, PATHINFO_FILENAME);
+        //     $pdf_extension = $request->file('pdf')->getClientOriginalExtension();
+        //     $pdf_name_to_store = $pdf_name . '_' .time() . '.'.$pdf_extension;
+        //     $path = $request->file('pdf')->storeAs('public/pdf', $pdf_name_to_store);
+        // }
+        $file = $request->file('pdf');
+        $full_name = $file->getClientOriginalName();
+        $ext = $file->extension();
+        $name = pathinfo($full_name, PATHINFO_FILENAME);
+        $file->storeAs('public/pdf' ,$name.'.'.$ext );
+        // $fileMimeType = $request->file('filename')->getMimeType();
+        $fileMimeType = $file->getMimeType();
+
+        Application::create([
+            'job_id' => request('job_id'),
+            'first_name' => request('first_name'),
+            'last_name' => request('last_name'),
+            'contact_number' => request('contact_number'),
+            'email' => request('email'),
+            'short_description' => request('short_description'),
+            'name' => $name,
+            'ext' => $ext,
+            'mime' => $fileMimeType
+        ]);
+
+        return redirect()->back();
+        // $name = $_FILES['fpdf']['name'];
+        // $mime = $_FILES['fpdf']['type'];
+        // $content = base64_encode(file_get_contents($_FILES['fpdf']['tmp_name']));
+
+        // $application->name = $name;
+        // $application->mime = $mime;
+        // $application->data = $content;
+
+        // $application->save();
+
+        // return redirect()->back();
+    }
+    public function showPDF($id)
+    {
+        $pdf = Upload::find($id);
+
+        $content = base64_decode($pdf->content);
+        return response($content)->header('Content-Type', $pdf->mime); // thanks to Devon
     }
 
 }

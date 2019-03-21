@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Reports;
+use App\Application;
 use Illuminate\Http\Request;
-use App\TestsResult;
 
-class ReportsController extends Controller
+class ApplicationController extends Controller
 {
     public function __construct()
     {
@@ -19,9 +18,8 @@ class ReportsController extends Controller
      */
     public function index()
     {
-        $tests_result = TestsResult::all();
-        $reports = Reports::all();
-        return view('admin.reports.index', compact('tests_result', 'reports'));
+        $application = Application::all();
+        return view('admin.application.index', compact('application'));
     }
 
     /**
@@ -48,10 +46,10 @@ class ReportsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Reports  $reports
+     * @param  \App\Application  $application
      * @return \Illuminate\Http\Response
      */
-    public function show(Reports $reports)
+    public function show(Application $application)
     {
         //
     }
@@ -59,10 +57,10 @@ class ReportsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Reports  $reports
+     * @param  \App\Application  $application
      * @return \Illuminate\Http\Response
      */
-    public function edit(Reports $reports)
+    public function edit(Application $application)
     {
         //
     }
@@ -71,10 +69,10 @@ class ReportsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Reports  $reports
+     * @param  \App\Application  $application
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reports $reports)
+    public function update(Request $request, Application $application)
     {
         //
     }
@@ -82,11 +80,12 @@ class ReportsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Reports  $reports
+     * @param  \App\Application  $application
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reports $reports)
+    public function destroy(Application $application)
     {
         //
     }
+    
 }

@@ -15,6 +15,12 @@ class CreateCareersTable extends Migration
     {
         Schema::create('careers', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('job')->unique();
+            $table->text('job_description');
+            $table->string('employment_type');
+            $table->text('duties');
+            $table->text('requirements');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -15,6 +15,16 @@ class CreateModeratorsTable extends Migration
     {
         Schema::create('moderators', function (Blueprint $table) {
             $table->increments('id');
+            // $table->string('first_name');
+            // $table->string('last_name');
+            // $table->string('email')->unique();
+            // $table->string('address');
+            // $table->string('admin_at');
+            // $table->string('type');
+            // $table->timestamp('email_verified_at')->nullable();
+            // $table->string('password');
+            // $table->softDeletes();
+            // $table->rememberToken();
             $table->timestamps();
         });
     }

@@ -34,6 +34,12 @@
       </li>
       @endif
       <li class="nav-item">
+        <a class="nav-link" href="{{ route('course.index') }}">
+          <span data-feather="plus-circle"></span>
+          Courses
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="{{ route('quiz.index')}}">
           <span data-feather="file-text"></span>
           Quiz
@@ -46,23 +52,32 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('course.index') }}">
-          <span data-feather="plus-circle"></span>
-          Courses
+        <a class="nav-link" href="{{ route('careers.index') }}">
+          <span data-feather="users"></span>
+          Careers
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('application.index') }}">
+          <span data-feather="users"></span>
+          Applications
+        </a>
+      </li>
+      
       <li class="nav-item">
         <a class="nav-link" href="{{ route('reports.index') }}">
           <span data-feather="plus-circle"></span>
-          Grade Reports
+          Reports
         </a>
       </li>
-      <li class="nav-item">
+
+
+      {{-- <li class="nav-item">
         <a class="nav-link" href="{{ route('course.index') }}">
           <span data-feather="plus-circle"></span>
           Comments
         </a>
-      </li>
+      </li> --}}
        {{-- <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapse"><span data-feather="plus-circle"></span>Courses</a>
         

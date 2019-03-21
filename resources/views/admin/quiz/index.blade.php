@@ -71,6 +71,7 @@
 				<th width="15%">Total Questions</th>
 				<th>Average Result</th>
 				<th>QuizWiz</th>
+				<th>Limit</th>
 				<th class="text-center"width="20%">Action</th>
 			</tr>
 			@foreach($quizzes as $quiz)
@@ -79,6 +80,7 @@
 				<td>{{count($quiz->questions)}}</td>
 				<td>{{$quiz->tests_results->where('quiz_id', $quiz->id)->avg('tests_result')}}</td>
 				<td>{{$quiz->tests_results->max('tests_result')}}</td>
+				<td>{{$quiz->limit}}</td>
 				<td>
 					<div class="form-group row">
 

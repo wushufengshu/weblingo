@@ -4,12 +4,7 @@
 
 <div class="row">
 <h1 class="h2">Dashboard</h1>
-    <div class="btn-toolbar mb-2 mb-md-0 ml-auto">
-      @if(auth()->user()->admin_at == 'Super Admin')
-      
-        <a class="btn btn-primary" href="{{ route('course.create') }}">Add Course </a>
-      @endif
-    </div>
+    
 </div>
 @endsection
 @section('content')

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Reports;
 use Illuminate\Http\Request;
-use App\TestsResult;
+use App\Course;
+use App\Lesson;
+use App\Code;
 
-class ReportsController extends Controller
+class CodeController extends Controller
 {
     public function __construct()
     {
@@ -19,9 +20,7 @@ class ReportsController extends Controller
      */
     public function index()
     {
-        $tests_result = TestsResult::all();
-        $reports = Reports::all();
-        return view('admin.reports.index', compact('tests_result', 'reports'));
+        //
     }
 
     /**
@@ -29,9 +28,10 @@ class ReportsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Course $course, Lesson $lesson)
     {
-        //
+        $code_count = 1;
+        return view('admin.course.lesson.code.create', compact('course','lesson','code_count'));
     }
 
     /**
@@ -42,16 +42,29 @@ class ReportsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Code::create([
+            'course_id' => request('course_id'),
+            'lesson_id' => request('lesson_id'),
+            'heading' => request('heading'),
+            'heading_body' => request('heading_body'),
+            'html_code' => request('html_code'),
+            'css_code' => request('css_code'),
+            'javascript_code' => request('javascript_code')
+        ]);  
+        $course_slug = request('course_slug');
+        $lesson_slug = request('lesson_slug');
+        session()->flash('message', 'Lesson added');
+
+        return redirect()->route('lesson.show', compact('course_slug', 'lesson_slug'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Reports  $reports
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Reports $reports)
+    public function show($id)
     {
         //
     }
@@ -59,10 +72,10 @@ class ReportsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Reports  $reports
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Reports $reports)
+    public function edit($id)
     {
         //
     }
@@ -71,10 +84,10 @@ class ReportsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Reports  $reports
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reports $reports)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -82,10 +95,10 @@ class ReportsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Reports  $reports
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reports $reports)
+    public function destroy($id)
     {
         //
     }

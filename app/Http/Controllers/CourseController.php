@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Admin;
 use App\Course;
 use App\Lesson;
+use App\Reports;
 
 class CourseController extends Controller
 {
@@ -50,6 +51,7 @@ class CourseController extends Controller
             'description' => 'required|max:255',
             'course_image' => 'image|nullable|max:1999'
         ]);
+        $course_name = request('name');
         if(request()->hasFile('course_image')){
             $file_name = $request->file('course_image')->getClientOriginalName();
             $image_name = pathinfo($file_name, PATHINFO_FILENAME);
@@ -59,6 +61,10 @@ class CourseController extends Controller
         }
 
         $admin->addCourse(request('name'),request('slug'), request('description'), $image_name_to_store );
+
+        $report = Reports::create([
+            'report' => auth()->user()->first_name . ' '. auth()->user()->last_name . ' created a course ' . $course_name
+        ]);
             
         session()->flash('message', 'Course added');
 

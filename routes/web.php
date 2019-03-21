@@ -33,6 +33,10 @@ Route::prefix('admin')->group(function() {
 
     Route::resource('video', 'VideoController');
 
+    Route::resource('/careers', 'CareerController');
+
+    Route::resource('/application', 'ApplicationController');
+
     Route::post('video/{id}', 'VideoController@add')->name('video.add');
 
     Route::get('quiz/quiz_details', 'QuizController@quiz_details')->name('quiz.quiz_details');
@@ -48,6 +52,12 @@ Route::prefix('admin')->group(function() {
     Route::get('/course/{course}/{lesson}','LessonController@showLesson')->name('lesson.show');
 
     Route::post('/course/{course}/{lesson}', 'LessonController@storeCode')->name('lesson.storeCode');
+
+    // Route::get('/course/{course}/{lesson}/create','CodeController@showLesson')->name('lesson.show');
+
+    Route::get('course/{course}/{lesson}/create', 'CodeController@create')->name('code.create');
+
+    Route::post('course/{course}/{lesson}/', 'CodeController@store')->name('code.store');
 
 });
 
@@ -75,9 +85,15 @@ Route::prefix('/')->group(function(){
 
     Route::get('/careers', 'HomeController@careers')->name('user.careers');
 
+    Route::get('/careers/showCareer/{id}', 'HomeController@showCareer')->name('user.showCareer');
+
     Route::get('/acknowledgement', 'HomeController@acknowledgement')->name('user.acknowledgement');
 
     Route::get('/termsandcondition', 'HomeController@terms')->name('user.terms');
+
+    Route::post('/careers', 'HomeController@upload')->name('application.upload');
+
+    Route::get('/show/{id}', 'HomeController@showPDF')->name('application.showPDF');
 
 });
 // test title

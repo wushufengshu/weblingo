@@ -20,8 +20,9 @@ class HtmlQuizTableSeeder extends Seeder
 
         $quiz1 = Quiz::create([
             'admin_id' => 2,
-            'name' => 'HTML Quiz Quizyy',
-            'slug' => 'html_quiz_quizzy'
+            'name' => 'HTML Quiz',
+            'slug' => 'html_quiz',
+            'limit' => 15
         ]); 
 
         $question1 = Question::create([

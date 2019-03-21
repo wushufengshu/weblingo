@@ -5,7 +5,7 @@
 <div class="row">
 <h1 class="h2">Reports</h1>
     <div class="btn-toolbar mb-2 mb-md-0 ml-auto">
-    	<a class="btn btn-primary" href="{{ route('users.create') }}">Create an user </a>
+    	{{-- <a class="btn btn-primary" href="{{ route('users.create') }}">Create an user </a> --}}
     </div>
 </div>
 @endsection
@@ -23,17 +23,21 @@
 		<table class="table table-hover mw-100" border="0">
 			
 			<tr class="table-active">
-				<th width="20%">Name</th>
-				<th width="25%">Attempts?</th>
-				<th width="15%">Correct answers</th>
-				<th width="15%">Last Attempt- updated at</th>
-				<th>Over all score?</th>
-				<th class="text-center"width="20%">Action</th>
+				<th width="20%">Reports</th>
+				<th width="25%">Date and time</th>
 			</tr>
 			{{-- {{$tests_result}} --}}
 
-			@foreach($tests_result as $result)
-				{{-- {{$result->admin}} --}}
+			{{-- @foreach($tests_result as $result)
+				{{$result->admin}}
+			@endforeach --}}
+			
+			@foreach($reports as $report)
+			<tr>
+				<td>{{$report->report}}</td>
+				<td>{{$report->created_at->diffForHumans()}}</td>
+			</tr>
+				
 			@endforeach
 					{{-- 	@foreach($quizzes as $quiz)
 			<tr>

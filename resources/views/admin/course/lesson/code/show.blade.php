@@ -5,14 +5,13 @@
 
     
   <div class="btn-toolbar mb-2 mb-md-0 ml-auto">
-    {{-- <form action="{{route('lesson.add_snippet', $course->slug)}}" method="POST"> 
+    <form action="{{route('lesson.add_snippet', $course->slug)}}" method="POST"> 
       @method('POST')
       @csrf
       <input type="hidden" id="snippet_count" min="0" max="5"  placeholder="Add Snippet" class="" style="width: 6rem" name="add_snippet" value="1" required>
       <input type="submit" id="add" name="add" class="btn btn-success" value="Add snippet">
       
-    </form> --}}
-    <a href="{{route('code.create', [$course->slug, $lesson->slug])}}">gago</a>
+    </form>
     <div class="" id="output"></div>
 
     
@@ -155,13 +154,11 @@
 			<tr class="table-active">
 				<th width="20%">Heading</th>
 				<th>Heading Body</th>
-				<th>Code</th>
 			</tr>
 			@foreach($lesson->code as $code)
 			<tr>
 				<td>{{$code['heading']}}</td>
 				<td>{!!$code->heading_body!!} </td>
-				<td>{{$code->html_code}}</td>
 			</tr>
 			@endforeach
 		</table>

@@ -135,12 +135,12 @@ class VideoTableSeeder extends Seeder
         ]);
         Media::create([
             'admin_id' => 2,
-        	'video_id'=> $video->id,
-        	'title' => 'Exercise 2: Giving Classess', 
-        	'video' => '1-12-HTML-Exercise_2_-_Giving_Classes', 
-        	'ext' => 'mp4',
-        	'mime_type' => 'video/mp4',
-        	'description' => 'Exercis 2 Giving Classess'
+            'video_id'=> $video->id,
+            'title' => 'Exercise 2: Giving Classess', 
+            'video' => '1-12-HTML-Exercise_2_-_Giving_Classes', 
+            'ext' => 'mp4',
+            'mime_type' => 'video/mp4',
+            'description' => 'Exercis 2 Giving Classess'
         ]);
         Media::create([
             'admin_id' => 2,
@@ -151,7 +151,22 @@ class VideoTableSeeder extends Seeder
         	'mime_type' => 'video/mp4',
         	'description' => 'Exercis 2 Solution'
         ]);
-        
+
+        $video2 = Video::create([
+            'admin_id' => 2,
+            'title' => 'HTML Video Tutorial By kuya tim',
+            'slug' => 'html_tutorial_by_kuya_time',
+            'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis, quod quos laboriosam nisi fuga aspernatur voluptates, explicabo delectus, odio in saepe reiciendis temporibus, itaque rerum error sequi mollitia nobis doloribussss'
+        ]); 
+        Media::create([
+            'admin_id' => 2,
+            'video_id'=> $video2->id,
+            'title' => 'input tit;e bar', 
+            'video' => 'input title bar tutorial', 
+            'ext' => 'mp4',
+            'mime_type' => 'video/mp4',
+            'description' => 'input title bar by kuya tim'
+        ]);
 
 
 

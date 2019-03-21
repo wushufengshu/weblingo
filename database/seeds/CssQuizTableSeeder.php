@@ -18,8 +18,9 @@ class CssQuizTableSeeder extends Seeder
 
 		$quiz2 = Quiz::create([
 			'admin_id' => 2,
-		    'name' => 'CSS Quiz Quizzy',
-		    'slug' => 'css_quiz_quizzy'
+		    'name' => 'CSS Quiz',
+		    'slug' => 'css_quiz',
+            'limit' => 15
 		]); 
 
 		$question1 = Question::create([

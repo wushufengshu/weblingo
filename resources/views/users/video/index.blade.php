@@ -12,7 +12,7 @@
           <div class=" col-* ">
             <div class="row p-0" style="background: #F9A159; height: 450px;">
               <div class="p-5 col-md-4  mx-auto">
-                <div class="h-50">
+                <div class="" style="height: auto; min-height: 100px;max-height: 250px;">
                   <h1 class=""><b>{{$video->title}}</b></h1>
                 <p class="h4">{{$video->description}}</p>
                 </div>

@@ -23,7 +23,7 @@ class LessonController extends Controller
     {   
         $a = $admin->where('id', auth()->id())->first();
 
-        $this->authorize('view', $course);
+        // $this->authorize('view', $course);
         $course_slug = $course->slug;
         $course_id = $course->id;
 
@@ -39,13 +39,13 @@ class LessonController extends Controller
      */
     public function create()
     {
-        $this->authorize('view', $course);
+        // $this->authorize('view', $course);
         return view('admin.course.lesson.create');
     }
 
     public function createLesson(Course $course)
     {
-        $this->authorize('view', $course);
+        // $this->authorize('view', $course);
         $course_id = $course->id;
         $snippet_count = 0;
 
@@ -60,7 +60,7 @@ class LessonController extends Controller
     public function store(Request $request, Course $course,Lesson $lesson)
     {
         
-        $this->authorize('view', $course);
+        // $this->authorize('view', $course);
         $course_slug = request('course_slug');
         $this->validate(request(), [
             'title' => 'required|unique:lessons|min:3|max:25',
@@ -112,7 +112,7 @@ class LessonController extends Controller
      */
     public function showLesson(Course $course, Lesson $lesson, Code $code)
     {
-        $this->authorize('view', $course);
+        // $this->authorize('view', $course);
         $codes = $code->where('lesson_id', $lesson->id)->get();
         $course_id = $course->id;
         $snippet_count = 0;
@@ -154,7 +154,7 @@ class LessonController extends Controller
 
         session()->flash('message', 'Lesson updated');
 
-        return redirect()->route('lesson.show', compact('course','lesson', 'course_slug','course_id'));
+        return redirect()->route('course.show', compact('course','lesson', 'course_slug','course_id'));
     }
 
     /**
@@ -209,7 +209,7 @@ class LessonController extends Controller
 //     {   
 //         $a = $admin->where('id', auth()->id())->first();
 
-//         $this->authorize('view', $course);
+        // $this->authorize('view', $course);
 //         $course_slug = $course->slug;
 //         $course_id = $course->id;
 

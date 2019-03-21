@@ -3,7 +3,7 @@
 @section('page-name')
 
 <div class="row">
-<h1 class="title">Edit lesson</h1>
+<h1 class="title">Edit category</h1>
   <div class="btn-toolbar mb-2 mb-md-0">
   </div>
 </div>
@@ -38,7 +38,7 @@
       <div class="form-group">
         <div class="col-md-12 ">
             <button type="submit" class="btn btn-primary float-right" >
-                Save
+                Register
             </button>
         </div>
       </div>

@@ -22,7 +22,7 @@
            {{--  <h5 class="card-title">Card title</h5> --}}
             <p class="card-text h4 text-center">{!!$course->description!!}</p>
           </div>
-          <a href="{{route('user.course', [$course->slug, $course->lesson->first()['slug']] )}}" class=" text-center btn btn-secondary" style="background: #5A6268">
+          <a href="{{route('user.course', [$course->slug, $course->lesson->first()['slug']] )}}" class=" text-center btn btn-secondary border-0 wlc" >
               <h2 class="display-5 text-light" >Learn {{$course->name}} &raquo;</h2>
           </a>
         </div>
@@ -40,7 +40,7 @@
     @foreach($video_chunk as $video)
     <div class="col-lg-4 mx-auto card bg-transparent">
       <h2> {{$video->title}}</h2>
-      <p><a class="btn btn-secondary float-right" href="{{route('user.video', $video->slug)}}" role="button">Watch now! <span data-feather="film"></span> </a></p>
+      <p><a class="btn btn-secondary float-right border-0 wlc" href="{{route('user.video', $video->slug)}}" role="button">Watch now! <span data-feather="film"></span> </a></p>
     </div>
     @endforeach
   </div>
@@ -57,7 +57,7 @@
             <p class="card-text h2 text-center">{{$quiz->name}}</p>
           </div>
           <div>
-      <p class="float-left">Questions: {{count($quiz->questions)}}</p><p><a class="btn btn-secondary float-right" href="{{route('user.quiz', $quiz->slug)}}" role="button">Take quiz now &raquo;</a></p>
+      <p class="float-left">Questions: {{count($quiz->questions)}}</p><p><a class="btn btn-secondary float-right border-0 wlc" href="{{route('user.quiz', $quiz->slug)}}" role="button">Take quiz now &raquo;</a></p>
     </div>
         </div>
       @endforeach
