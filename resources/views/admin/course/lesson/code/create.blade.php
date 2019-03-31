@@ -21,7 +21,6 @@
   </div> 
 </div>
 
-{{$lesson->slug}}
 @endsection
 @section('content')
 <div class=" container row m-0 card bg-transparent">
@@ -33,7 +32,6 @@
       <input type="hidden" value="{{$lesson->slug}}" name="lesson_slug">
       <input type="hidden" value="{{$course->id}}" name="course_id">
       <input type="hidden" value="{{$lesson->id}}" name="lesson_id">
-      <hr>
       <div class="form-group row" id="row{{$code_count}}">
         <label for="heading-body" class="col-md-2 col-form-label ">Snippet</label>
         <div class="col-md-10" id="add_snippet">

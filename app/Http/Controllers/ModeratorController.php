@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
-use \App\Admin;
+use \App\Reports;
 use \App\Course;
 
 class ModeratorController extends Controller
@@ -24,7 +24,7 @@ class ModeratorController extends Controller
      */
     public function index()
     {
-        $admins = Admin::orderBy('id', 'asc')->paginate(5);
+        $admins = Moderator::where('admin_at','<>','Super Admin')->orderBy('id', 'asc')->paginate(5);
         return view('admin.moderator.index', compact('admins'));
     }
 
@@ -56,7 +56,7 @@ class ModeratorController extends Controller
             'password' => 'required|string|min:6|confirmed',
         ]);
 
-        $admin = Admin::create([
+        $admin = Moderator::create([
             'first_name' => request('first_name'),
             'last_name' => request('last_name'),
             'email' => request('email'),
@@ -66,6 +66,9 @@ class ModeratorController extends Controller
             'password' => bcrypt(request('password'))
         ]);
 
+        $report = Reports::create([
+            'report' => auth()->user()->first_name . ' '. auth()->user()->last_name . ' created a moderator [ ' . $admin->first_name . ' '.$admin->last_name . ' ]'
+        ]);
         session()->flash('message', 'Admin user is created.');
 
         return redirect()->route('moderator.index');
@@ -80,7 +83,7 @@ class ModeratorController extends Controller
      */
     public function show($id)
     {
-        $admin = Admin::findOrFail($id);
+        $admin = Moderator::findOrFail($id);
         return view('admin.moderator.show', compact('admin'));
     }
 
@@ -92,7 +95,7 @@ class ModeratorController extends Controller
      */
     public function edit($id)
     {
-        $admin = Admin::findOrFail($id);
+        $admin = Moderator::findOrFail($id);
         return view('admin.moderator.edit', compact('admin'));
     }
 
@@ -105,7 +108,7 @@ class ModeratorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $admin = Admin::findOrFail($id);
+        $admin = Moderator::findOrFail($id);
 
         $admin->first_name = request('first_name');
         $admin->last_name = request('last_name');
@@ -113,6 +116,10 @@ class ModeratorController extends Controller
         $admin->address = request('address');
 
         $admin->save();
+
+        $report = Reports::create([
+            'report' => auth()->user()->first_name . ' '. auth()->user()->last_name . ' updated a moderator [ ' . $admin->first_name . ' '.$admin->last_name . ' ]'
+        ]);
 
         session()->flash('message', 'The user is updated successfully.');
 
@@ -128,9 +135,16 @@ class ModeratorController extends Controller
      */
     public function destroy($id)
     {
-        $admin = Admin::findOrFail($id)->delete();
+        $admin = Moderator::findOrFail($id);
+
+        $report = Reports::create([
+            'report' => auth()->user()->first_name . ' '. auth()->user()->last_name . ' deleted a moderator [ ' . $admin->first_name . ' '.$admin->last_name . ' ]'
+        ]);
+
+        $admin->delete();
         // return redirect()->back();
         session()->flash('message', 'The user is deleted successfully.');
         return redirect()->route('moderator.index');
     }
 }
+//reports destroy not working

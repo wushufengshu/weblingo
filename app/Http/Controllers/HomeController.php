@@ -23,7 +23,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except('index', 'course', 'aboutus', 'terms', 'acknowledgement', 'careers','showCareer','upload');
-        $this->middleware('guest')->only('index', 'course', 'aboutus', 'terms', 'acknowledgement', 'careers','showCareer','upload');
+        // $this->middleware('guest')->only('index', 'course', 'aboutus', 'terms', 'acknowledgement', 'careers','showCareer','upload');
     }
     
 

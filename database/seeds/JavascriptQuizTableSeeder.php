@@ -18,7 +18,7 @@ class JavascriptQuizTableSeeder extends Seeder
 
 		$quiz1 = Quiz::create([
 			'admin_id' => 2,
-			'name' => 'Java Script Quiz',
+			'name' => 'JS Quiz',
 			'slug' => 'javascript_quiz',
             'limit' => 15
 		]); 

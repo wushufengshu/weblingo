@@ -33,6 +33,13 @@
 			      </div>
 
 			      <div class="form-group row">
+			        <label for="limit" class="col-md-2 col-form-label ">Limit</label>
+			        <div class="col-md-10">
+			          <input id="limit" type="text" class="form-control" placeholder="Enter quiz name" name="limit" value="" required autofocus>
+			        </div>
+			      </div>
+
+			      <div class="form-group row">
 			        <label for="slug" class="col-md-2 col-form-label ">Slug</label>
 			        <div class="col-md-10">
 			          <input id="slug" type="text" class="form-control" placeholder="Enter slug" name="slug" value="" required autofocus>
@@ -43,7 +50,6 @@
 			    
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 		        <button type="submit" class="btn btn-primary float-right">Save</button>
 		      </div>
 		  	</form>
@@ -54,14 +60,14 @@
 </div>
 @endsection
 @section('content')
-	<div class="wrapper container">
+	{{-- <div class="wrapper container">
 		<div class="form-group row">
-		    {{-- <label for="search" class="col-md-3 h3 ">List of all Users</label>
+		    <label for="search" class="col-md-3 h3 ">List of all Users</label>
 		    <div class="col-md-5 mx-auto">
 		      <input type="text" class="form-control col-md" id="search" placeholder="Search" aria-label="Search">
-		    </div> --}}
+		    </div> 
 	 	 </div>
-	</div>
+	</div>--}}
 	<div class="table-responsive form-group col-md-12">
 		
 		<table class="table table-hover mw-100" border="0">
@@ -70,8 +76,9 @@
 				<th width="20%">Quiz</th>
 				<th width="15%">Total Questions</th>
 				<th>Average Result</th>
-				<th>QuizWiz</th>
+				<th>Quiz Taker</th>
 				<th>Limit</th>
+				<th>Created At</th>
 				<th class="text-center"width="20%">Action</th>
 			</tr>
 			@foreach($quizzes as $quiz)
@@ -79,8 +86,9 @@
 				<td><a href="{{ route('quiz.show', $quiz->slug) }}">{{$quiz->name}}</a></td>
 				<td>{{count($quiz->questions)}}</td>
 				<td>{{$quiz->tests_results->where('quiz_id', $quiz->id)->avg('tests_result')}}</td>
-				<td>{{$quiz->tests_results->max('tests_result')}}</td>
+				<td>{{count($quiz->tests_results)}}</td>
 				<td>{{$quiz->limit}}</td>
+				<td>{{$quiz->created_at}}</td>
 				<td>
 					<div class="form-group row">
 

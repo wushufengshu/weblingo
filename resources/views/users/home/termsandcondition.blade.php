@@ -1,6 +1,7 @@
 @extends('users.layouts.master2')
 
-@section('content')
+@section('content').
+<div class="col-md-10 mx-auto my-3">
       <div class="row featurette">
     <div class="col-md-12 text-left">
       <h1 class="color">Terms and Condition.</h1>
@@ -15,5 +16,6 @@
 
   By accessing and using WebLingo you agree to be bound by these terms. If you disagree with any part of the terms then you may not access WebLingo.</p>
     </div>
+  </div>
   </div>
  @endsection

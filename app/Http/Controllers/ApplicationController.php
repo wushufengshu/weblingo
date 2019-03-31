@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Application;
 use Illuminate\Http\Request;
-
+use App\Reports;
+ 
 class ApplicationController extends Controller
 {
     public function __construct()
@@ -83,9 +84,15 @@ class ApplicationController extends Controller
      * @param  \App\Application  $application
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Application $application)
+    public function destroy($id)
     {
-        //
+        $application = Application::findOrFail($id);
+        $report = Reports::create([
+            'report' => auth()->user()->first_name . ' '. auth()->user()->last_name . ' deleted an application of [ ' . $application->first_name . ' '.$application->last_name . ' ]'
+        ]);
+        $application->delete();
+        session()->flash('message', 'The application is deleted.');
+        return redirect()->route('application.index');
     }
     
 }

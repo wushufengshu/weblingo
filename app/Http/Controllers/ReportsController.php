@@ -20,7 +20,7 @@ class ReportsController extends Controller
     public function index()
     {
         $tests_result = TestsResult::all();
-        $reports = Reports::all();
+        $reports = Reports::orderBy('id', 'desc')->get();
         return view('admin.reports.index', compact('tests_result', 'reports'));
     }
 

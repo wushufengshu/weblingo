@@ -3,7 +3,7 @@
 @section('page-name')
 
 <div class="row">
-<h1 class="h2">Admin</h1>
+<h1 class="h2">{{$career->job}}</h1>
     <div class="btn-toolbar mb-2 mb-md-0 ml-auto">
     </div>
 </div>
@@ -22,26 +22,31 @@
 	
 	
 	
-	<div class="table-responsive form-group col-md-10">
+	<div class="table-responsive form-group col-md-12">
 		
 		<table class="table table-hover" border="0">
 			
 			<tr class="table-active">
-				<th width="20%">Name</th>
-				<th width="25%">Email</th>
-				<th width="35%">Address</th>
-				<th class="text-center">Action</th>
+				<th width="15%">Job</th>
+				<th width="25%">Job Description</th>
+				<th width="15%">Employment Type</th>
+				<th width="15%">Duties</th>
+				<th>Requirements</th>
+				<th class="text-center"width="20%">Action</th>
 			</tr>
+
 			<tr>
-				<td>{{$admin->first_name}} {{$admin->last_name}}</td>
-				<td>{{$admin->email}}</td>
-				<td>{{$admin->address}}</td>
+				<td>{{$career->job}}</td>
+				<td> {{$career->job_description}} </td>
+				<td> {{$career->employment_type}} </td>
+				<td> {{$career->duties}} </td>
+				<td> {{$career->requirements}} </td>
 				<td>
 					<div class="form-group row">
 
-						<a href="{{ route('user-admin.edit', $admin->id) }}" class="btn btn-secondary mx-auto">Update</a>
+						<a href="{{ route('careers.edit', $career->id) }}" class="btn btn-secondary mx-auto">Update</a>
 
-						<form method="POST" class="mx-auto" action="{{route('user-admin.destroy', $admin->id) }}">
+						<form method="POST" class="mx-auto" action="{{route('careers.destroy', $career->id) }}">
 							@method('DELETE')
 							@csrf
 							<div class="field">

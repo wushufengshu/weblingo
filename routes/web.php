@@ -33,6 +33,8 @@ Route::prefix('admin')->group(function() {
 
     Route::resource('video', 'VideoController');
 
+    Route::resource('media', 'MediaController');
+
     Route::resource('/careers', 'CareerController');
 
     Route::resource('/application', 'ApplicationController');

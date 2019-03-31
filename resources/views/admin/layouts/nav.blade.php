@@ -1,5 +1,6 @@
 <nav class="navbar navbar-dark fixed-top flex-md-nowrap p-0 shadow navbar-expand-md"  style="background:#008080;">
-  <a class="navbar-brand col-lg-2 mr-0" href="#"><img class="img-fluid mx-auto " src="{{ asset('images/WLLogo.png') }}" style="height: 30px" alt="">
+  <a class="navbar-brand col-lg-2 mr-0" href="#">
+    <img class="img-fluid mx-auto " src="{{ asset('images/WLLogo.png') }}" style="height: 30px" alt="">
     {{ config('app.name', 'Antidote') }}
   </a>
 

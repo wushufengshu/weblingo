@@ -36,11 +36,27 @@
 
 			@foreach($careers as $career)
 			<tr>
-				<td>{{$career->job}}</td>
+				<td><a href="{{route('careers.show', $career->id)}}">{{$career->job}}</a></td>
 				<td> {{$career->job_description}} </td>
 				<td> {{$career->employment_type}} </td>
 				<td> {{$career->duties}} </td>
 				<td> {{$career->requirements}} </td>
+				<td>
+					<div class="form-group row">
+
+						<a href="{{ route('careers.edit', $career->id) }}" class="btn btn-secondary mx-auto">Update</a>
+
+						<form method="POST" class="mx-auto" action="{{route('careers.destroy', $career->id) }}">
+							@method('DELETE')
+							@csrf
+							<div class="field">
+								<div class="control">
+									<button type="submit" class="btn btn-danger">Delete</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</td>
 			</tr>
 			@endforeach
 

@@ -39,9 +39,9 @@
 				<td>
 					<div class="form-group row">
 
-						<a href="{{ route('user-admin.edit', $admin->id) }}" class="btn btn-secondary mx-auto">Update</a>
+						<a href="{{ route('moderator.edit', $admin->id) }}" class="btn btn-secondary mx-auto">Update</a>
 
-						<form method="POST" class="mx-auto" action="{{route('user-admin.destroy', $admin->id) }}">
+						<form method="POST" class="mx-auto" action="{{route('moderator.destroy', $admin->id) }}">
 							@method('DELETE')
 							@csrf
 							<div class="field">

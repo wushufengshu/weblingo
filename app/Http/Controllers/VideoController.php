@@ -6,6 +6,7 @@ use App\Video;
 use Validator;
 use App\Media;
 use Illuminate\Http\Request;
+use App\Reports;
 
 class VideoController extends Controller
 {
@@ -55,6 +56,9 @@ class VideoController extends Controller
             'description' => request('description')
         ]);
         $video_id = $video->id;
+        $report = Reports::create([
+            'report' => auth()->user()->first_name . ' '. auth()->user()->last_name . ' created a video tutorial [ ' . $video->title . ' ]'
+        ]);
 
         session()->flash('message', 'Video Tutorial is successfully created.');
 
@@ -101,6 +105,10 @@ class VideoController extends Controller
         $video->description = request('description');
         $video->save();
 
+        $report = Reports::create([
+            'report' => auth()->user()->first_name . ' '. auth()->user()->last_name . ' updated a video tutorial [ ' . $video->title . ' ]'
+        ]);
+
         return redirect()->route('video.index');
     }
 
@@ -110,9 +118,16 @@ class VideoController extends Controller
      * @param  \App\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Video $video)
+    public function destroy($id)
     {
-        //
+        $video = Video::findOrFail($id);
+        $report = Reports::create([
+            'report' => auth()->user()->first_name . ' '. auth()->user()->last_name . ' deleted a video tutorial [ ' . $video->title . ' ]'
+        ]);
+        $video->delete();
+        // return redirect()->back();
+        session()->flash('message', 'The video tutorial is deleted successfully.');
+        return redirect()->route('video.index');
     }
 
     public function add(Request $request)

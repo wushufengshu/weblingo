@@ -1,7 +1,6 @@
 @extends('admin.layouts.master')
 
 @section('page-name')
-{{$number_of_option}}
 <div class="row">
 <h1 class="h2">Questions</h1>
     {{-- <form action="{{route('questions.add_option', $quiz->slug)}}" method="POST"> 

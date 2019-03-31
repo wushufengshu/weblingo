@@ -32,8 +32,8 @@
           <div class="col-md-10">
             <select class="form-control" id="employment_type" name="employment_type" id="employment_type" >
               <option>--select--</option>
-              <option value="full_time">Full time</option>
-              <option value="part_time">Part time</option>
+              <option value="Full time">Full time</option>
+              <option value="Part time">Part time</option>
             </select>
           </div>
       </div>

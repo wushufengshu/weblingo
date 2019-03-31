@@ -9,7 +9,7 @@ class Course extends Model
 	protected $table = 'courses';
 	
 	protected $fillable = [
-        'admin_id', 'name','slug', 'description','image'
+        'admin_id', 'name','slug', 'description',
     ];
     public function admin(){
 		return $this->belongsTo(Admin::class);

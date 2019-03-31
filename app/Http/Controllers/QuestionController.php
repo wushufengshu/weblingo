@@ -8,6 +8,8 @@ use App\Quiz;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
+use App\Reports;
+
 
 class QuestionController extends Controller
 {
@@ -93,17 +95,30 @@ class QuestionController extends Controller
             ]);
         // dd($request->get('answers') );
 
-            foreach ($request->get('answers') as $n => $answer_value  ) {
-                $corrects = $request->get('correct');
-                $answers = Answer::create([
-                    'question_id' => $questions->id,
-                    'answer' => $answer_value,
-                    'correct' => $corrects[$n]
-                ]);
+            // foreach ($request->get('answers') as $n => $answer_value  ) {
+            //     $corrects = $request->get('correct');
+            //     $answers = Answer::create([
+            //         'question_id' => $questions->id,
+            //         'answer' => $answer_value,
+            //         'correct' => $corrects[$n]
+            //     ]);
                 
-            }
+            // }
             // $quiz->questions()->answers()->createMany($answers);
             
+
+            foreach ($request->get('answers') as $n => $answer_value  ) {
+
+                if($answer_value != null){
+                    $corrects = $request->get('correct');
+                    $answers = Answer::create([
+                        'question_id' => $questions->id,
+                        'answer' => $answer_value,
+                        'correct' => $corrects[$n]
+                    ]);
+                }
+                
+            }
             
             // dd($request->input('correct_' . 1));
             // foreach (as $key => $value) {

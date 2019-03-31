@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Career;
 use Illuminate\Http\Request;
+use App\Reports;
 
 class CareerController extends Controller
 {
@@ -56,6 +57,9 @@ class CareerController extends Controller
             'duties' => request('duties'),
             'requirements' => request('requirements'),
         ]);
+        $report = Reports::create([
+            'report' => auth()->user()->first_name . ' '. auth()->user()->last_name . ' added a new job career [ ' . $career->job . ' ]'
+        ]);
 
         session()->flash('message', 'New career is now open!');
 
@@ -68,9 +72,10 @@ class CareerController extends Controller
      * @param  \App\Career  $career
      * @return \Illuminate\Http\Response
      */
-    public function show(Career $career)
+    public function show($id)
     {
-        //
+        $career = Career::findOrFail($id);
+        return view('admin.career.show', compact('career'));
     }
 
     /**
@@ -79,9 +84,10 @@ class CareerController extends Controller
      * @param  \App\Career  $career
      * @return \Illuminate\Http\Response
      */
-    public function edit(Career $career)
+    public function edit($id)
     {
-        //
+        $career = Career::findOrFail($id);
+        return view('admin.career.edit', compact('career'));
     }
 
     /**
@@ -91,9 +97,32 @@ class CareerController extends Controller
      * @param  \App\Career  $career
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Career $career)
-    {
-        //
+    public function update(Request $request, $id)
+    {   
+        $career = Career::findOrFail($id);
+        $this->validate(request(), [
+            'job' => 'required|string|max:30s',
+            'job_description' => 'required|string|max:30',
+            'employment_type' => 'required',
+            'duties' => 'required',
+            'requirements' => 'required',
+        ]);
+
+        $career->job = request('job');
+        $career->job_description = request('job_description');
+        $career->employment_type = request('employment_type');
+        $career->duties = request('duties');
+        $career->requirements = request('requirements');
+
+        $career->save();
+        $report = Reports::create([
+            'report' => auth()->user()->first_name . ' '. auth()->user()->last_name . ' updated a job career [ ' . $career->job . ' ]'
+        ]);
+
+        session()->flash('message', 'The job is updated successfully.');
+
+        
+        return view('admin.career.show', compact('career'));
     }
 
     /**
@@ -102,8 +131,15 @@ class CareerController extends Controller
      * @param  \App\Career  $career
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Career $career)
+    public function destroy($id)
     {
-        //
+        $career = Career::findOrFail($id);
+        $report = Reports::create([
+            'report' => auth()->user()->first_name . ' '. auth()->user()->last_name . ' deleted a job career [ ' . $career->job . ' ]'
+        ]);
+        $career->delete();
+        // return redirect()->back();
+        session()->flash('message', 'The career is deleted successfully.');
+        return redirect()->route('careers.index');
     }
 }

@@ -27,9 +27,9 @@
 			
 			<tr class="table-active">
 				<th width="15%">Name</th>
-				<th width="25%">Description</th>
+				<th width="30%">Description</th>
 				<th width="15%">Course Image</th>
-				<th width="15%">Slug</th>
+				<th width="10%">Slug</th>
 				<th>Date Created</th>
 				<th class="text-center"width="20%">Action</th>
 			</tr>
@@ -38,7 +38,13 @@
 			<tr>
 				<td><a href="{{route('course.show', $course->slug)}}">{{$course->name}}</a> </td>
 				<td>{!!$course->description!!}</td>
-				<td><img src="/storage/images/{{$course->image}}" alt="{{$course->name}} Logo" style="height: 50px; width: 50px;"></td>
+				<td>
+					@if($course->image)
+					<img src="/storage/images/{{$course->image}}" alt="{{$course->name}} Logo" style="height: 50px; width: 50px;">
+					@else
+					 <img src="{{asset('images/default_course_image.png')}}" class="" name="default_course_image"  style="height: 50px; width: 50px;">
+					@endif
+				</td>
 				<td>{{$course->slug}}</td>
 				<td>{{$course->created_at->toFormattedDateString()}}</td>
 				<td>
@@ -59,8 +65,9 @@
 				</td>
 			</tr>
 			@endforeach
+			
 
-		</table>
+		</table>{{$courses->links()}}
 	</div>
 	
 </div>

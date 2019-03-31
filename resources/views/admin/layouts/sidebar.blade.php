@@ -51,6 +51,7 @@
           Video Tutorials
         </a>
       </li>
+       @if(auth()->user()->admin_at == 'Super Admin')
       <li class="nav-item">
         <a class="nav-link" href="{{ route('careers.index') }}">
           <span data-feather="users"></span>
@@ -70,7 +71,7 @@
           Reports
         </a>
       </li>
-
+      @endif
 
       {{-- <li class="nav-item">
         <a class="nav-link" href="{{ route('course.index') }}">

@@ -8,6 +8,8 @@ use App\Question;
 use App\QuestionOption;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use App\Reports;
+
 
 class QuizController extends Controller
 {
@@ -69,15 +71,20 @@ class QuizController extends Controller
         $this->validate(request(), [
             'quiz_name' => 'required|string|max:30',
             'slug' => 'required|unique:quizzes|string',
+            'limit' => 'required|integer'
         ]);
 
         $quiz = Quiz::create([
             'admin_id' => auth()->id(),
             'name' => request('quiz_name'),
             'slug' => request('slug'),
+            'limit' => request('limit')
         ]);
-        
-        return redirect()->route('quiz.index');
+        $quiz_slug = $quiz->slug;
+        $report = Reports::create([
+            'report' => auth()->user()->first_name . ' '. auth()->user()->last_name . ' created a quiz [ ' . $quiz->name. ' ] '
+        ]);
+        return redirect()->route('quiz.show', compact('quiz_slug'));
     }
 
     /**
@@ -117,16 +124,20 @@ class QuizController extends Controller
         $this->validate(request(), [
             'name' => 'required|string|max:30',
             'slug' => 'required|string',
+            'limit' => 'required|integer'
         ]);
 
         $quiz->name = request('name');
         $quiz->slug = request('slug');
+        $quiz->limit = request('limit');
 
         $quiz->save();
-
+        $report = Reports::create([
+            'report' => auth()->user()->first_name . ' '. auth()->user()->last_name . ' updated a quiz [ ' . $quiz->name . ' ]'
+        ]);
         session()->flash('message', 'The quiz is updated successfully.');
         
-        return redirect()->route('quiz.index');
+        return redirect()->route('quiz.show', $quiz->slug);
     }
 
     /**
@@ -139,6 +150,9 @@ class QuizController extends Controller
     {
         $quiz = Quiz::findOrFail($id)->delete();
         // return redirect()->back();
+        $report = Reports::create([
+            'report' => auth()->user()->first_name . ' '. auth()->user()->last_name . ' deleted a quiz [ ' . $quiz->name . ' ]'
+        ]);
         session()->flash('message', 'The quiz is deleted successfully.');
         return redirect()->back();
     }

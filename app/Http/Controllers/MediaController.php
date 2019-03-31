@@ -78,8 +78,11 @@ class MediaController extends Controller
      * @param  \App\Media  $media
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Media $media)
+    public function destroy($id)
     {
-        //
+        $video = Media::findOrFail($id)->delete();
+        // return redirect()->back();
+        session()->flash('message', 'The video tutorial is deleted successfully.');
+        return redirect()->route('video.index');
     }
 }

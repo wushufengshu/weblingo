@@ -34,6 +34,19 @@
 				<td> {{$applicant->email}} </td>
 				<td> {{$applicant->short_description}} </td>
 				<td> <a href="{{URL::asset('storage/pdf/'.$applicant->name .'.'. $applicant->ext)}}" target="_blank">{{$applicant->name}}</a></td>
+				<td>
+					<div class="form-group row">
+						<form method="POST" class="mx-auto" action="{{route('application.destroy', $applicant->id) }}">
+							@method('DELETE')
+							@csrf
+							<div class="field">
+								<div class="control">
+									<button type="submit" class="btn btn-danger">Delete</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</td>
 				{{-- <td>
 					<div class="form-group row">
 

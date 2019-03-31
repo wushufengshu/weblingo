@@ -84,7 +84,7 @@
 				<td>
 					<div class="form-group row">
 
-						{{-- <a href="{{ route('media.edit', $video->id) }}" class="btn btn-secondary mx-auto">Update</a> --}}
+						<a href="{{ route('video.edit', $video->id) }}" class="btn btn-secondary mx-auto">Update</a>
 
 						<form method="POST" class="mx-auto" action="{{route('media.destroy', $media->id) }}">
 							@method('DELETE')

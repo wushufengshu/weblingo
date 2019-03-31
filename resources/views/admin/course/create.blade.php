@@ -22,9 +22,10 @@
       <div class="form-group row">
         <label for="course-image" class="col-md-2 col-form-label ">Course Image</label>
         <div class="col-md-8">
-          <input id="course-image" type="file" class="form-control-file" name="course_image" value="" placeholder="Course Image" required autofocus>
+          <input id="course-image" type="file" class="form-control-file" name="course_image" value="" placeholder="Course Image"  autofocus>
         </div> 
       </div>
+      
       <div class="form-group row">
         <label for="slug" class="col-md-2 col-form-label ">Page Title</label>
           <div class="col-md-8">
@@ -34,7 +35,8 @@
       <div class="form-group row">
         <label for="description" class="col-md-2 col-form-label ">Description</label>
           <div class="col-md-8">
-            <textarea id="description"  class=" form-control ckeditor" name="description" placeholder="Description" value="" rows="5" required autofocus></textarea> 
+            {{-- <textarea id="description"  class=" form-control ckeditor" name="description" placeholder="Description" value="" rows="5" required autofocus></textarea>  --}}
+            <textarea id="description"  class=" form-control " name="description" placeholder="Description" value="" rows="5" required autofocus></textarea> 
           </div>
       </div>      
       <div class="form-group row">
@@ -47,6 +49,7 @@
       </div>
       @include('admin.layouts.errors')
       </div>
+
     </form>
 </div>
 @endsection

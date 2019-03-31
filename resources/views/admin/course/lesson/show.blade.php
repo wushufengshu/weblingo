@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 @section('page-name')
 <div class="row">
-<h1 class="h2 pr-2">Edit lesson content to {{$course->name}}</h1>
+<h1 class="h2 pr-2">{{$lesson->title}}</h1>
 
     
   <div class="btn-toolbar mb-2 mb-md-0 ml-auto">
@@ -12,7 +12,7 @@
       <input type="submit" id="add" name="add" class="btn btn-success" value="Add snippet">
       
     </form> --}}
-    <a href="{{route('code.create', [$course->slug, $lesson->slug])}}">gago</a>
+    <a href="{{route('code.create', [$course->slug, $lesson->slug])}}" class="btn btn-primary">Add lesson content</a>
     <div class="" id="output"></div>
 
     

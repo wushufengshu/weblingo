@@ -19,7 +19,7 @@ class CreateCoursesTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('slug')->unique();
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

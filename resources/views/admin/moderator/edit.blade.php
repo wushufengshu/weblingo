@@ -10,7 +10,7 @@
 @endsection
 @section('content')
   <div class="wrapper container card bg-transparent col-md-10">
-    <form method="POST" action="{{ route('user-admin.update', $admin->id) }}">    
+    <form method="POST" action="{{ route('moderator.update', $admin->id) }}">    
       @method('PATCH')
       @csrf
       <div class="form-group row">

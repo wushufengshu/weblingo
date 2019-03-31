@@ -10,13 +10,7 @@
 </div>
 @endsection
 @section('content')
-	<div class="wrapper container">
-		<div class="form-group row">
-			<label for="search" class="col-md-3 h3 "></label>
-		    <div class="col-md-5 mx-auto">
-		    </div>
-	 	 </div>
-	</div>
+
 	
 	<div class="table-responsive form-group col-md-12">
 		

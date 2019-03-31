@@ -7,6 +7,9 @@ use App\Course;
 use App\Admin;
 use App\Code;
 use Illuminate\Http\Request;
+use App\Reports;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class LessonController extends Controller
 {
@@ -97,6 +100,10 @@ class LessonController extends Controller
                 ]);  
             }            
         }
+
+        $report = Reports::create([
+            'report' => auth()->user()->first_name . ' '. auth()->user()->last_name . ' created a lesson ' . $lesson->title
+        ]);
       
         session()->flash('message', 'Lesson added');
 
@@ -152,6 +159,10 @@ class LessonController extends Controller
         $lesson->slug = request('slug');
         $lesson->save();
 
+        $report = Reports::create([
+            'report' => auth()->user()->first_name . ' '. auth()->user()->last_name . ' updated a lesson ' . $course_name
+        ]);
+
         session()->flash('message', 'Lesson updated');
 
         return redirect()->route('course.show', compact('course','lesson', 'course_slug','course_id'));
@@ -167,6 +178,9 @@ class LessonController extends Controller
     {
         $lesson = Lesson::findOrFail($id)->delete();
 
+        $report = Reports::create([
+            'report' => auth()->user()->first_name . ' '. auth()->user()->last_name . ' deleted a lesson ' . $course_name
+        ]);
         session()->flash('message', 'Lesson deleted');
         return redirect()->back();
     }

@@ -50,23 +50,61 @@
         <a href="#">Back to top</a>
       </p>
     </footer> --}}
-    <footer class="text-muted">
+{{--     <footer class="text-muted">
   <div class="container">
     <p class="float-right">
       <a href="#">Back to top</a>
     </p>
-    <li>
-      <a href="{{route('user.aboutus')}}">Aboutus</a>
-    </li>
-    <li>
-      <a href="{{route('user.careers')}}">Careers</a>
-    </li>
-    <li>
-      <a href="{{route('user.acknowledgement')}}">Acknowledgement</a>
-    </li>
-    <li>
-      <a href="{{route('user.terms')}}">Terms and Condition</a>
-    </li>
+    
+    
+    
+    
     
   </div>
-</footer>
+</footer> --}}    <hr />
+<div class="container ">
+
+  <div class="row">
+    <div class="col-lg-12 row">
+      <div class="col-md-3">
+        <ul class="list-unstyled text-center">
+          <li>
+            <a href="{{route('user.aboutus')}}">Aboutus</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <ul class="list-unstyled text-center">
+          <li>
+            <a href="{{route('user.careers')}}">Careers</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <ul class="list-unstyled text-center">
+          <li>
+            <a href="{{route('user.acknowledgement')}}">Acknowledgement</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <ul class="list-unstyled text-center">
+          <li>
+            <a href="{{route('user.terms')}}">Terms and Condition</a>
+          </li>
+        </ul>
+      </div>  
+    </div>
+  </div>
+  <hr>
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            {{-- <ul class="nav nav-pills nav-justified">
+                <li></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Privacy</a></li>
+            </ul> --}}
+            © 2019 WebLingo
+        </div>
+    </div>
+</div>

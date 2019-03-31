@@ -3,43 +3,56 @@
 @section('page-name')
 
 <div class="row">
-<h1 class="title">Edit User Admin</h1>
+<h1 class="title">Edit Job</h1>
   <div class="btn-toolbar mb-2 mb-md-0">
   </div>
 </div>
 @endsection
 @section('content')
   <div class="wrapper container card bg-transparent col-md-10">
-    <form method="POST" action="{{ route('user-admin.update', $admin->id) }}">    
+    <form method="POST" action="{{ route('careers.update', $career->id) }}">    
       @method('PATCH')
       @csrf
       <div class="form-group row">
-        <label for="name" class="col-md-2 col-form-label ">Name</label>
-            <div class="col-md-5">
-              <input type="text" class="form-control" placeholder="First name" value="{{$admin->first_name}}" name="first_name" required>
-            </div>
-            <div class="col-md-5">
-              <input type="text" class="form-control" placeholder="Last name" value="{{$admin->last_name}}" name="last_name" required>
-            </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="email" class="col-md-2 col-form-label ">E-Mail Address</label>
+        <label for="job" class="col-md-2 col-form-label ">Job </label>
           <div class="col-md-10">
-            <input id="email" type="email" class="form-control" name="email" value="{{$admin->email}}" required>
+            <input id="job" type="text" class="form-control" name="job" placeholder="Job" value="{{$career->job}}" required>
           </div>
       </div>
 
       <div class="form-group row">
-        <label for="address" class="col-md-2 col-form-label ">Address</label>
+        <label for="job_description" class="col-md-2 col-form-label ">Job Description</label>
           <div class="col-md-10">
-            <input id="address" type="address" class="form-control" name="address" value="{{$admin->address}}" required>
+            <textarea id="job_description" class="form-control" name="job_description" placeholder="Job Description" required>{{$career->job_description}}</textarea>
+          </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="employment_type" class="col-md-2 col-form-label ">Employment Type</label>
+          <div class="col-md-10">
+            <select class="form-control" id="employment_type" name="employment_type" id="employment_type" >
+              <option>--select--</option>
+              <option value="Full time">Full time</option>
+              <option value="Part time">Part time</option>
+            </select>
+          </div>
+      </div>
+      <div class="form-group row">
+        <label for="duties" class="col-md-2 col-form-label ">Duties</label>
+          <div class="col-md-10">
+            <textarea id="duties" cols="30" rows="2" name="duties" class="form-control" placeholder="Duties" required>{{$career->duties}}</textarea>
+          </div>
+      </div>
+      <div class="form-group row">
+        <label for="requirements" class="col-md-2 col-form-label ">Requirements</label>
+          <div class="col-md-10">
+            <textarea name="requirements" id="requirements" class="form-control" cols="30" rows="2" placeholder="Requirements" required>{{$career->requirements}}</textarea>
           </div>
       </div>
       <div class="form-group">
         <div class="col-md-12 ">
             <button type="submit" class="btn btn-primary float-right">
-                Update
+                Register
             </button>
         </div>
       </div>

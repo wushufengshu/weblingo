@@ -3,7 +3,15 @@
 @section('page-name')
 
 <div class="row">
-<h1 class="h2"><img src="/storage/images/{{$course->image}}" alt="{{$course->name}} Logo" style="height: 30px; width: 30px;">{{$course->name}} </h1>
+<h1 class="h2">
+	{{-- <img src="/storage/images/{{$course->image}}" alt="{{$course->name}} Logo" style="height: 30px; width: 30px;">{{$course->name}}  --}}
+	@if($course->image)
+	<img src="/storage/images/{{$course->image}}" alt="{{$course->name}} Logo" style="height: 30px; width: 30px;">
+	@else
+	 <img src="{{asset('images/default_course_image.png')}}" class="" name="default_course_image"  style="height: 30px; width: 30px;"> 
+	@endif
+{{$course->name}} 
+</h1>
     <div class="btn-toolbar mb-2 mb-md-0 ml-auto">
     	<a class="btn btn-primary" href="{{route('lesson.create', $course_slug)}}"><span data-feather="file-plus" style="margin-right: 5px;"> </span>Add Lesson</a>
     </div>

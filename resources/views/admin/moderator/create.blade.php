@@ -10,7 +10,7 @@
 @endsection
 @section('content')
   <div class="wrapper container card col-md-10 bg-transparent">
-    <form method="POST" action="{{ route('user-admin.store') }}">    
+    <form method="POST" action="{{ route('moderator.store') }}">    
       @method('POST')
       @csrf
 

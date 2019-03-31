@@ -6,7 +6,7 @@
 <h1 class="h2 pr-2">Add lesson content to {{$course->name}}</h1>
 
     
-  <div class="btn-toolbar mb-2 mb-md-0 ml-auto">
+{{--   <div class="btn-toolbar mb-2 mb-md-0 ml-auto">
     <form action="{{route('lesson.add_snippet', $course->slug)}}" method="POST"> 
       @method('POST')
       @csrf
@@ -18,7 +18,7 @@
 
     
 
-  </div> 
+  </div>  --}}
 </div>
 
 @endsection

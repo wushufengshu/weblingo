@@ -10,7 +10,7 @@
 @endsection
 @section('content')
   <div class="wrapper container card col-md-12 bg-transparent">
-    <form method="POST" action="{{ route('video.update', $video->slug) }}">    
+    <form method="POST" action="{{ route('video.update', $video->id) }}">    
       @method('PATCH')
       @csrf
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Course;
 use App\Lesson;
 use App\Code;
+use App\Reports;
 
 class CodeController extends Controller
 {

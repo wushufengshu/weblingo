@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class TestsResult extends Model
 {
+
+    // protected $table = 'tests_results';
+    
 	protected $fillable = ['quiz_id', 'user_id','tests_result'];
 
     public function answers()
