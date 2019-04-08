@@ -17,7 +17,7 @@ class CreateVideosTable extends Migration
             $table->increments('id');
             $table->integer('admin_id');
             $table->string('title');
-            $table->text('slug')->unique();
+            $table->string('slug')->unique();
             $table->text('description');
             $table->timestamps();
         });

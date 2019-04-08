@@ -1,4 +1,4 @@
-@extends('users.layouts.master2')
+@extends('users.layouts.master')
 
 @section('content')
 {{-- <form action="{{route('application.upload')}}" method="POST" enctype="multipart/form-data">
@@ -20,7 +20,7 @@
     @if($careers->isEmpty())
     <div class="col-md-10 mx-auto my-3">
         <div class="row featurette">
-        <div class="col-md-12 text-left">
+        <div class="col-md-12 text-center">
           <h1 class="color">Sorry, there are no job openings for now..</h1>
           {{-- <p class="lead">We would like to acknowledge w3school, tutorialspoint for being our guide for this project. <br>
             All videos are courtesy of Brian Holt.
@@ -35,9 +35,9 @@
                 <a href="{{route('user.showCareer', $career->id)}}"></a>
             </li>
         </ul> --}}
-        <div class="card-deck col-md-10 mx-auto">
+        <div class="card-deck col-md-8 mx-auto">
         @foreach($careers as $career)
-          <div class="card">
+          <div class="card bg-transparent">
             <div class="card-header"><b><h3>{{$career->job}}</h3></b></div>
             <div class="card-body">
               <h5 class="card-title"><b>Job Description</b></h5>
