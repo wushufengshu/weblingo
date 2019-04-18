@@ -5,7 +5,6 @@
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item ">
@@ -109,19 +108,22 @@
 @foreach($quizzes->chunk(3) as $quiz_chunk)
   <div class="card-deck mb-3 text-center">
   	@foreach($quiz_chunk as $quiz)
-	    @if($quiz->questions->isNotEmpty())
-	    <div class="card mb-4 shadow-sm bg-transparent">
-	      <div class="card-header">
-	        <h4 class="my-0 font-weight-normal">{{$quiz->name}}</h4>
-	      </div>
-	      <div class="card-img"><img src="{{ asset('images/questionmark.png') }}" class="card-img-top " style="height: 150px;width: 150px;border: 0px solid black" alt=""></div>
-	      <div class="card-body">
-	        <ul class="list-unstyled mt-3 mb-4">
-	          <li>Questions: {{count($quiz->questions)}}</li>
-	        </ul>
-	        <p><a class="btn btn-secondary col border-0 wlc" href="{{route('user.quiz', $quiz->slug)}}" role="button">Take quiz now &raquo;</a></p>
-	      </div>
-	    </div>
+	    @if($quiz->questions->isNotEmpty()) 
+        @if($quiz->limit <= count($quiz->questions))
+  	    <div class="card mb-4 shadow-sm bg-transparent">
+  	      <div class="card-header">
+  	        <h4 class="my-0 font-weight-normal">{{$quiz->name}}</h4>
+  	      </div>
+  	      <div class="card-img"><img src="{{ asset('images/questionmark.png') }}" class="card-img-top " style="height: 150px;width: 150px;border: 0px solid black" alt=""></div>
+  	      <div class="card-body">
+  	        <ul class="list-unstyled mt-3 mb-4">
+  	          <li>Questions: {{$quiz->limit}}</li>
+  	        </ul>
+  	        <p><a class="btn btn-secondary col border-0 wlc" href="{{route('user.quiz', $quiz->slug)}}" role="button">Take quiz now &raquo;</a></p>
+  	      </div>
+  	    </div>
+        @else
+        @endif
 	    @else
 	    @endif
   	@endforeach

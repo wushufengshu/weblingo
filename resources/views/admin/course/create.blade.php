@@ -20,9 +20,9 @@
           </div>
       </div>
       <div class="form-group row">
-        <label for="course-image" class="col-md-2 col-form-label ">Course Image</label>
+        <label for="course_image" class="col-md-2 col-form-label ">Course Image</label>
         <div class="col-md-8">
-          <input id="course-image" type="file" class="form-control-file" name="course_image" value="" placeholder="Course Image"  autofocus>
+          <input id="course_image" type="file" class="form-control-file" name="course_image" value="" placeholder="Course Image"  autofocus>
         </div> 
       </div>
       

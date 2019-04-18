@@ -25,12 +25,17 @@
   <body style="background: #d9dde0;">
     @include ('admin.layouts.nav')
 
-    <div class="container-fluid">
-      <div class="row">
-        @include ('admin.layouts.sidebar')
+    <div class="container col">
+      <div class="row ">
+          <div class="col-md-2  sidebar_admin" >
+            @include ('admin.layouts.sidebar')
+          </div>
+          
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+          <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4">
+          
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 mt-0 pb-2 mb-3 border-bottom">
             <div class="container-fluid">
               @yield('page-name')
             </div>
@@ -45,6 +50,7 @@
 
           
         </main>
+
       </div>
 
       @include('admin.layouts.flash-message')

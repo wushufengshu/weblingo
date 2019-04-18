@@ -125,7 +125,7 @@ class HomeController extends Controller
     {
         // $app = Application::find(1);
         $careers = Career::all();
-        return view('users.home.careers', compact('app','careers'));
+        return view('users.home.careers', compact('careers'));
     }
     public function showCareer($id)
     {

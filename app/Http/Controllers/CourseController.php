@@ -61,9 +61,10 @@ class CourseController extends Controller
             $image_extension = $request->file('course_image')->getClientOriginalExtension();
             $image_name_to_store = $image_name . '_' .time() . '.'.$image_extension;
             $path = $request->file('course_image')->storeAs('public/images', $image_name_to_store);
-        }
+        }else{
 
-        $image_name_to_store = null;
+            $image_name_to_store = null;
+        }
 
         $admin->addCourse(request('name'),request('slug'), request('description'), $image_name_to_store );
 

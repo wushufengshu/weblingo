@@ -8,6 +8,7 @@ use \Auth;
 use App\Video;
 use App\Quiz;
 use App\TestsResult;
+use App\Reports;
 
 class AdminController extends Controller
 {
@@ -31,7 +32,8 @@ class AdminController extends Controller
         $videos = Video::all();
         $quizzess = Quiz::all();
         $tests_results = TestsResult::all();
-        return view('admin.dashboard.index', compact('courses','tests_results', 'videos','quizzess'));
+        $reports = Reports::all();
+        return view('admin.dashboard.index', compact('courses','tests_results', 'videos','quizzess','reports'));
     }
     // public function dashboard()
     // {

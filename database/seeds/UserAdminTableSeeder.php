@@ -19,7 +19,7 @@ class UserAdminTableSeeder extends Seeder
         Admin::create([
             'first_name' => 'Den',
             'last_name' => 'Casquejo',
-            'email' => 'redencasquejo@gmail.com',
+            'email' => 'casepack123@gmail.com',
             'address' => 'Cavite',
             'admin_at' => 'Super Admin',
             'type' => 'super_admin',
@@ -35,31 +35,31 @@ class UserAdminTableSeeder extends Seeder
             'password' => bcrypt('asdasd')
         ]); 
 
-        foreach (range(1, 3) as $index) 
-        {
+        // foreach (range(1, 3) as $index) 
+        // {
 
-        	Admin::create([
-	            'first_name' => $faker->firstName,
-                'last_name' => $faker->lastName,
-	            'email' => $faker->email,
-	            'address' => $faker->address,
-                'admin_at' => 'HTML5',
-                'type' => 'admin',
-	            'password' => bcrypt('asdasd')
-        	]);	
-        }
-        foreach (range(1, 3) as $index) 
-        {
+        // 	Admin::create([
+	       //      'first_name' => $faker->firstName,
+        //         'last_name' => $faker->lastName,
+	       //      'email' => $faker->email,
+	       //      'address' => $faker->address,
+        //         'admin_at' => 'HTML5',
+        //         'type' => 'admin',
+	       //      'password' => bcrypt('asdasd')
+        // 	]);	
+        // }
+        // foreach (range(1, 3) as $index) 
+        // {
 
-            Admin::create([
-                'first_name' => $faker->firstName,
-                'last_name' => $faker->lastName,
-                'email' => $faker->email,
-                'address' => $faker->address,
-                'admin_at' => 'CSS3',
-                'type' => 'admin',
-                'password' => bcrypt('asdasd')
-            ]); 
-        }
+        //     Admin::create([
+        //         'first_name' => $faker->firstName,
+        //         'last_name' => $faker->lastName,
+        //         'email' => $faker->email,
+        //         'address' => $faker->address,
+        //         'admin_at' => 'CSS3',
+        //         'type' => 'admin',
+        //         'password' => bcrypt('asdasd')
+        //     ]); 
+        // }
     }
 }

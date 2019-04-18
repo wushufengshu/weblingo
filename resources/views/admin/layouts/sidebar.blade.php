@@ -1,8 +1,12 @@
+<nav class="navbar navbar-expand-xl navbar-light col-md-12  bg-transparent pl-3 p-0  m-0 " >
 
-<nav class="col-md-2 d-none d-md-block sidebar">
+  <button class="navbar-toggler mt-4" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
 
-  <div class="sidebar-sticky">
-    <ul class="nav flex-column">
+  <div class="collapse  navbar-collapse  border-dark bg-transparent pl-0" id="navbar">
+
+    <ul class="navbar-nav col-md-12 nav flex-column text-nowrap flex-nowrap " > 
       <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.home') }}">
           <span data-feather="home"></span>
@@ -11,12 +15,6 @@
       </li>
 
       @if(auth()->user()->admin_at == 'Super Admin')
-     {{--  <li class="nav-item">
-        <a class="nav-link" href="{{ route('user-admin.index') }}">
-          <span data-feather="users"></span>
-          Admins
-        </a>
-      </li> --}}
 
       <li class="nav-item">
         <a class="nav-link" href="{{ route('moderator.index') }}">
@@ -72,33 +70,6 @@
         </a>
       </li>
       @endif
-
-      {{-- <li class="nav-item">
-        <a class="nav-link" href="{{ route('course.index') }}">
-          <span data-feather="plus-circle"></span>
-          Comments
-        </a>
-      </li> --}}
-       {{-- <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapse"><span data-feather="plus-circle"></span>Courses</a>
-        
-        <div class="container">
-          <div class="collapse" id="collapse">
-            
-            @foreach($archives as $course)
-                <a class="nav-link text-secondary collapse" id="collapse" href="{{route('course.show', $course->slug)}}">{{$course->name}}</a>
-
-
-            @endforeach
-          </div>
-        </div> 
-      </li> --}}
     </ul>
-
-    
   </div>
 </nav>
-
-
-
-<!-- #END# Right Sidebar -->

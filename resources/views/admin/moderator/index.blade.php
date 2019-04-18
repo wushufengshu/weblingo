@@ -35,7 +35,8 @@
 
 						<a href="{{ route('moderator.edit', $admin->id) }}" class="btn btn-secondary mx-auto">Update</a>
 
-						<form method="POST" class="mx-auto" action="user-admin/{{$admin->id}}">
+						{{-- <form method="POST" class="mx-auto" action="user-admin/{{$admin->id}}"> --}}
+						<form method="POST" class="mx-auto" action="{{route('moderator.destroy', $admin->id)}}">
 							@method('DELETE')
 							@csrf
 							<div class="field">

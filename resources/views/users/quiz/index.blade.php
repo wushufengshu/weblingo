@@ -16,7 +16,7 @@
           <div class="card mx-auto quiz_form border-dark" style="background: #dee2e5">
           <h6>Answer these {{count($quiz->questions)}} questions. There's no time limit</h6>
           <hr>
-          @foreach($questions->shuffle() as $question)
+          @foreach($questions->shuffle()->take($quiz->limit) as $question)
             <div class="container-fluid h-25 m-0 mb-1 py-1 text-white" style="background: #008080">
               <h6 class="">{{$loop->iteration}}.  {{ $question->body }}</h6>
             </div>

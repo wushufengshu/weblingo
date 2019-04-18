@@ -30,7 +30,7 @@ class QuizController extends Controller
         // $quiz_average = $quiz->where()
         // $average = $tests->tests_result;
         // $total_questions = count($quiz->questions);
-        return view('admin.quiz.index', compact('quizzes', 'total_questions','average', 'courses'));
+        return view('admin.quiz.index', compact('quizzes'));
     }
 
     /**
